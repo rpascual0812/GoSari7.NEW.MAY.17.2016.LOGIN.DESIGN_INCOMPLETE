@@ -7,11 +7,13 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
         >
 
         <TextView
-            android:paddingTop="5dp"
-            android:paddingLeft="5dp"
+
             android:id="@+id/tvCart_Items"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
@@ -21,7 +23,6 @@
             />
 
         <TextView
-            android:paddingLeft="5dp"
             android:id="@+id/tvCart_Description_Items"
             android:layout_below="@+id/tvCart_Items"
             android:layout_height="wrap_content"
@@ -33,7 +34,7 @@
             />
 
         <TextView
-            android:paddingLeft="5dp"
+
             android:id="@+id/tvCart_Count"
             android:layout_below="@id/tvCart_Description_Items"
             android:layout_height="wrap_content"
@@ -43,20 +44,10 @@
             android:textColor="#000000"
             />
 
-        <TextView
-            android:paddingLeft="5dp"
-            android:layout_below="@+id/tvCart_Price_Items"
-            android:id="@+id/tvCart_DeliveryTime"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Delivery Time:"
-            android:textSize="10sp"
-            android:textColor="#000000"
-            android:paddingBottom="5dp"/>
 
 
         <TextView
-            android:paddingLeft="5dp"
+
             android:id="@+id/tvCart_Price_Items"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
@@ -67,6 +58,27 @@
             android:layout_below="@+id/tvCart_Count"
 
             />
+        <TextView
+
+            android:layout_below="@+id/tvCart_Price_Items"
+            android:id="@+id/tvCart_DeliveryTime"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Delivery Time:"
+            android:textSize="10sp"
+            android:textColor="#000000"
+            />
+
+
+        <Button
+            android:id="@+id/btn_remove"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_below="@id/tvCart_DeliveryTime"
+            android:text="REMOVE"
+            android:textSize="10sp"
+            android:elevation="3dp"
+            />
 
     </RelativeLayout>
     <LinearLayout
@@ -74,10 +86,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:orientation="vertical"
-        android:paddingTop="20dp"
+        android:paddingTop="50dp"
+        android:paddingRight="20dp"
         >
         <ImageView
-            android:paddingRight="5dp"
             android:id="@+id/image_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

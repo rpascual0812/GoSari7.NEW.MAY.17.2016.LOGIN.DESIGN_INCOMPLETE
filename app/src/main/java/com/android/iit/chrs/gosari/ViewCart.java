@@ -1,5 +1,6 @@
 package com.android.iit.chrs.gosari;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.Service;
 import android.content.Context;
@@ -86,6 +87,10 @@ public class ViewCart extends AppCompatActivity {
 
     ArrayList<ItemCart>newDateTimeChkout;
 
+    static Activity activity;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +98,7 @@ public class ViewCart extends AppCompatActivity {
 
         db = new DbHelper(this);
 
+        activity=this;
 
         tvTotalPrice = (TextView) findViewById(R.id.tvTotalPrice);
         tvNoofItems = (TextView) findViewById(R.id.tvTotalItems);
@@ -149,6 +155,7 @@ public class ViewCart extends AppCompatActivity {
 
 
     }
+
 
     public void showDialog() {
 
@@ -484,6 +491,15 @@ public class ViewCart extends AppCompatActivity {
         }
 
     }
+
+
+    public static void restart(){
+        activity.recreate();
+    }
+
+
+
+
 
 
 
