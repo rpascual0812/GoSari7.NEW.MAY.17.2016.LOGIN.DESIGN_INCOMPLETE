@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        card_view:contentPadding="@dimen/activity_horizontal_margin"
+        card_view:cardCornerRadius="3dp"
+        card_view:cardElevation="0dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        card_view:cardBackgroundColor="@android:color/transparent">
+
+        <ImageView
+            android:id="@+id/img_thumbnail"
+            android:layout_width="fill_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:src="@drawable/comingsoon"
+            />
+
+        <TextView
+            android:id="@+id/tvCategory"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:layout_gravity="bottom"
+            android:gravity="center_vertical"
+            android:alpha="0.8"
+            android:textSize="20dp"
+            android:text="Pinoy Classics"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#FFFFFF"
+            />
+            <!--android:background="#696969"
+            android:alpha="0.8"
+            android:textSize="@dimen/abc_text_size_headline_material"
+            android:text="Test"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#FFFFFF"-->
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

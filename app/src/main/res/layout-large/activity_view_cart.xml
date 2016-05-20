@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/background"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+
+        <ListView
+            android:layout_marginTop="20dp"
+            android:id="@+id/list_cart"
+            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1.0"
+            android:divider="@null"
+            android:dividerHeight="30dp">
+        </ListView>
+
+        <TextView
+            android:id="@+id/tvTotalItems"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="# ITEMS: "
+            android:textSize="30sp"
+            android:textColor="#f5fffa"
+
+            />
+
+        <TextView
+            android:id="@+id/tvTotalPrice"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="TOTAL PRICE: "
+            android:textSize="30sp"
+            android:textColor="#f5fffa"
+            />
+
+        <Button
+            android:id="@+id/btnCheckout"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CHECK OUT"
+            android:textSize="30dp"
+            android:textColor="#f5fffa"/>
+
+    </LinearLayout>
+</LinearLayout>

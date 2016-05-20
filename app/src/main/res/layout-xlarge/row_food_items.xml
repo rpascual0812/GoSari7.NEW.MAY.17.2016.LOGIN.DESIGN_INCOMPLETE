@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <ImageView
+        android:id="@+id/imageViewContactIcon"
+        android:layout_width="match_parent"
+        android:layout_height="358dp"
+        android:scaleType="fitXY"
+        android:background="@drawable/comingsoon"/>
+
+    <LinearLayout
+        android:id="@+id/linearlayoutContactName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="#99000000"
+        android:layout_alignBottom="@+id/imageViewContactIcon">
+
+
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/tvItem"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Category"
+                android:textSize="10sp"
+                android:textColor="#FFFFFF" />
+            <TextView
+                android:id="@+id/tvPrice_Items"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Pirce"
+                android:textSize="10sp"
+                android:textColor="#FFFFFF"/>
+
+            <TextView
+                android:id="@+id/tvDeliveryTime_Items"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Delivery Time"
+                android:textSize="10sp"
+                android:textColor="#FFFFFF"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
