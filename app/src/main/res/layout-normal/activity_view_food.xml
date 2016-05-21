@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@drawable/background"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     tools:context="com.android.iit.chrs.gosari.ViewFood">
 
     <ImageView
@@ -15,12 +16,32 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="5dp"
         android:paddingTop="10dp"
 
         />
 
+
+    <android.support.v7.widget.CardView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        card_view:cardBackgroundColor="@color/colorPrimaryDark"
+        card_view:contentPadding="10dp"
+
+        >
+        <TextView
+            android:id="@+id/tvFood_ShowTotalCount"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Cart 0 item(s)-PHP 0"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+
+            />
+    </android.support.v7.widget.CardView>
     <LinearLayout
+
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical">
@@ -33,21 +54,21 @@
         tools:listitem="@layout/row_food"
         android:layout_weight="1.0"
         android:divider="#00000000"
-        android:dividerHeight="15dp"
+        android:dividerHeight="10dp"
         >
 
     </ListView>
 
         <ImageButton
-            android:layout_margin="15dp"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:src="@drawable/ic_shoppingcartwhite"
             android:background="@drawable/circle"
             android:id="@+id/imgbtnViewCart"
-            android:layout_gravity="right|bottom" />
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="5dp"/>
 
 
+    </LinearLayout>
 
-</LinearLayout>
 </LinearLayout>

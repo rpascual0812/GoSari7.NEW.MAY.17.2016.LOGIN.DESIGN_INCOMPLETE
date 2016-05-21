@@ -22,6 +22,7 @@ package com.android.iit.chrs.gosari;
     import android.widget.ImageButton;
     import android.widget.ImageView;
     import android.widget.ListView;
+    import android.widget.TextView;
     import android.widget.Toast;
 
     import org.json.JSONArray;
@@ -46,11 +47,15 @@ package com.android.iit.chrs.gosari;
 
         int showCartItemCount,showCartItemPrice;
 
+        TextView ShowCartItems;
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
              getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             setContentView(R.layout.activity_view_food);
+
+            ShowCartItems=(TextView)findViewById(R.id.tvFood_ShowTotalCount);
 
             activity=this;
 
@@ -148,6 +153,8 @@ package com.android.iit.chrs.gosari;
             showCartItemPrice=db.getTotalPrice();
 
             Log.e("TOTAL PRICE AND COUNT: ",String.valueOf(showCartItemCount)+" "+String.valueOf(showCartItemPrice));
+
+            ShowCartItems.setText("Cart "+showCartItemCount+" item(s) - "+'\u20B1'+" "+showCartItemPrice);
         }
 
         public static void restart(){

@@ -63,7 +63,7 @@
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.android.iit.chrs.gosari.ViewFood" />
+                android:value="com.android.iit.chrs.gosari.ViewCategory" />
 
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

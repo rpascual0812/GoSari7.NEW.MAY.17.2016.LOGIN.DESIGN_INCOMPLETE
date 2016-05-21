@@ -498,8 +498,13 @@ public class ViewCart extends AppCompatActivity {
         activity.recreate();
     }
 
-
-
+    @Override
+    public void onBackPressed()
+    {
+        Intent viewFoodCategory=new Intent(getApplicationContext(),ViewCategory.class);
+        startActivity(viewFoodCategory);
+        this.finish();
+    }
 
 
 

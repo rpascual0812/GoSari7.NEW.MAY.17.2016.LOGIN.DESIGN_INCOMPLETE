@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 import org.json.JSONArray;
 import java.text.DateFormat;
@@ -64,13 +65,14 @@ public class ViewFoodItems extends AppCompatActivity {
 
     int showCartCount,showCartPrice;
 
-
+    TextView ShowTotalCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_food_items);
 
+        ShowTotalCount=(TextView)findViewById(R.id.tvFoodItems_ShowTotalCount);
 
         sv=(SearchView) findViewById(R.id.searchView1);
 
@@ -251,6 +253,7 @@ public class ViewFoodItems extends AppCompatActivity {
 
         Intent showCartItem = new Intent(getApplicationContext(), ViewCart.class);
         startActivity(showCartItem);
+        ViewFood.restart();
         this.finish();
     }
 
@@ -281,9 +284,13 @@ public class ViewFoodItems extends AppCompatActivity {
 
 
     public void ShowCartItemCount(){
+
         showCartCount=db.getItemCount();
+
         showCartPrice=db.getTotalPrice();
         Log.e("CART ITEMS:",String.valueOf(showCartCount)+" "+String.valueOf(showCartPrice));
+
+        ShowTotalCount.setText("Cart "+showCartCount+" item(s) - "+'\u20B1'+" "+showCartPrice);
     }
 
     @Override
@@ -292,9 +299,6 @@ public class ViewFoodItems extends AppCompatActivity {
         ViewFood.restart();
         finish();
     }
-
-
-
 
 
 
