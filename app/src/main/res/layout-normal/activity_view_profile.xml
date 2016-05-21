@@ -29,11 +29,55 @@
         android:layout_height="wrap_content"
         android:text="Name"
         />
+
+
     <Button
         android:id="@+id/btn_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LOGOUT"
         />
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:orientation="vertical"
+        >
 
+        <EditText
+            android:id="@+id/in_oldpassword"
+            android:paddingTop="20dp"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:hint="Old Password"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            />
+
+        <EditText
+            android:id="@+id/in_newPassWord"
+            android:paddingTop="20dp"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:hint="New Password"
+            android:maxLines="1"
+            android:inputType="textPassword"
+            />
+
+        <EditText
+            android:id="@+id/in_confirmnewPassWord"
+            android:paddingTop="20dp"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:hint="Confirm New Password"
+            android:maxLines="1"
+            android:inputType="textPassword"
+            />
+
+        <Button
+            android:id="@+id/btn_ChagePass"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="CHANGE PASSWORD"
+            />
+</LinearLayout>
 </LinearLayout>
