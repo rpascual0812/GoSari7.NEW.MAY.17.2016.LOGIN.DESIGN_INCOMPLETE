@@ -148,7 +148,8 @@ public class ViewCart extends AppCompatActivity {
                 itemcount = itemCarts.get(position).getCartCount();
 
 
-                showDialog();
+               // showDialog();
+                showUpdateDialog();
 
             }
         });

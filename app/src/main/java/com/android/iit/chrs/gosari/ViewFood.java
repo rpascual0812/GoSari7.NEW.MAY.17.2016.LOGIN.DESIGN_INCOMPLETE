@@ -1,6 +1,7 @@
 package com.android.iit.chrs.gosari;
 
 
+    import android.app.Activity;
     import android.content.DialogInterface;
     import android.content.Intent;
     import android.graphics.drawable.ColorDrawable;
@@ -12,6 +13,7 @@ package com.android.iit.chrs.gosari;
     import android.support.v7.app.AppCompatActivity;
     import android.os.Bundle;
     import android.support.v7.widget.Toolbar;
+    import android.util.Log;
     import android.view.Menu;
     import android.view.MenuItem;
     import android.view.View;
@@ -38,11 +40,23 @@ package com.android.iit.chrs.gosari;
 
         ImageButton imgbtnViewCart;
 
+        DbHelper db;
+
+        static Activity activity;
+
+        int showCartItemCount,showCartItemPrice;
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
              getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             setContentView(R.layout.activity_view_food);
+
+            activity=this;
+
+            db=new DbHelper(this);
+
+            ShowCountItems();
 
             imgbtnViewCart=(ImageButton)findViewById(R.id.imgbtnViewCart);
 
@@ -88,9 +102,9 @@ package com.android.iit.chrs.gosari;
                             break;
                     }
                     Toast.makeText(getApplicationContext(), String.valueOf(test), Toast.LENGTH_SHORT).show();
-
                     Intent ShowFoodItem = new Intent(getApplicationContext(), ViewFoodItems.class);
                     startActivity(ShowFoodItem);
+
 
                 }
             });
@@ -102,6 +116,8 @@ package com.android.iit.chrs.gosari;
 
                 }
             });
+
+
 
 
 
@@ -124,6 +140,18 @@ package com.android.iit.chrs.gosari;
             Intent viewCart = new Intent(getApplicationContext(),ViewCart.class);
             startActivity(viewCart);
 
+        }
+
+
+        public void ShowCountItems(){
+            showCartItemCount=db.getItemCount();
+            showCartItemPrice=db.getTotalPrice();
+
+            Log.e("TOTAL PRICE AND COUNT: ",String.valueOf(showCartItemCount)+" "+String.valueOf(showCartItemPrice));
+        }
+
+        public static void restart(){
+            activity.recreate();
         }
 
 

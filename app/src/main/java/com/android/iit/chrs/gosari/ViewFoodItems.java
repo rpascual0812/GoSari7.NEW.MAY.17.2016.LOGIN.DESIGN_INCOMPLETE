@@ -32,7 +32,7 @@ public class ViewFoodItems extends AppCompatActivity {
 
     static ItemFoodAdapter adapter;
 
-    public static JSONArray result = null;
+    public static JSONArray result;
 
 
     public static String message;
@@ -62,10 +62,15 @@ public class ViewFoodItems extends AppCompatActivity {
 
     SearchView sv;
 
+    int showCartCount,showCartPrice;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_food_items);
+
 
         sv=(SearchView) findViewById(R.id.searchView1);
 
@@ -75,9 +80,10 @@ public class ViewFoodItems extends AppCompatActivity {
 
         ItemfoodList = new ArrayList<ItemFood>();
 
-        AsyncTaskFoodItem.test = true;
 
-        new AsyncTaskFoodItem(ViewFoodItems.this).execute();
+
+       new AsyncTaskFoodItem(ViewFoodItems.this).execute();
+
 
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
 
@@ -106,6 +112,8 @@ public class ViewFoodItems extends AppCompatActivity {
 
         });
 
+
+
         imgbtnViewCart = (ImageButton) findViewById(R.id.imgbtnViewCart2);
 
         imgbtnViewCart.setOnClickListener(new View.OnClickListener() {
@@ -133,6 +141,8 @@ public class ViewFoodItems extends AppCompatActivity {
 
             }
         });
+
+        ShowCartItemCount();
 
 
     }
@@ -220,6 +230,12 @@ public class ViewFoodItems extends AppCompatActivity {
 
                     InserData();
                     count = 1;
+                    Intent intent = getIntent();
+                    finish();
+                    startActivity(intent);
+
+
+
 
                 }
 
@@ -235,6 +251,7 @@ public class ViewFoodItems extends AppCompatActivity {
 
         Intent showCartItem = new Intent(getApplicationContext(), ViewCart.class);
         startActivity(showCartItem);
+        this.finish();
     }
 
 
@@ -260,6 +277,20 @@ public class ViewFoodItems extends AppCompatActivity {
         });
         AlertDialog alertDialog = alertdialogbuilder.create();
         alertDialog.show();
+    }
+
+
+    public void ShowCartItemCount(){
+        showCartCount=db.getItemCount();
+        showCartPrice=db.getTotalPrice();
+        Log.e("CART ITEMS:",String.valueOf(showCartCount)+" "+String.valueOf(showCartPrice));
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        ViewFood.restart();
+        finish();
     }
 
 
