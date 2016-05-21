@@ -53,7 +53,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "category_pk TEXT," +
                 "item_cart TEXT," +
                 "item_description TEXT," +
-                "item_price INTEGER," +
+                "item_price FLOAT," +
                 "item_count INTEGER," +
                 "item_deliverytime TEXT," +
                 "item_date TEXT)";
@@ -65,7 +65,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "chkout_item_pk TEXT,"+
                 "chkout_categ_pk TEXT,"+
                 "chkout_item TEXT,"+
-                "chkout_price INTEGER,"+
+                "chkout_price FLOAT,"+
                 "chkout_count INTEGER,"+
                 "chkout_date TEXT)";
         db.execSQL(CREATE_CHKOUT_TABLE);
@@ -211,7 +211,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void updateItem(String item,int newPrice,int newCount) {
+    public void updateItem(String item,float newPrice,int newCount) {
         db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(ITEM_PRICE, newPrice);
@@ -325,5 +325,19 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM account");
         db.close();
     }
+
+    public int getTotalitemCount () {
+
+        SQLiteDatabase db=this.getReadableDatabase();
+
+        String getItemCount="SELECT SUM (item_count) FROM "+TABLE_CART;
+        Cursor c=db.rawQuery(getItemCount,null);
+        c.moveToFirst();
+        int count =c.getInt(0);
+        c.close();
+        return count;
+    }
+
+
 }
 

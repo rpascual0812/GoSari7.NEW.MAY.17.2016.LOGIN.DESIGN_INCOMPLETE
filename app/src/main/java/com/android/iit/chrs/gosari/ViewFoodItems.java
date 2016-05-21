@@ -38,7 +38,9 @@ public class ViewFoodItems extends AppCompatActivity {
 
     public static String message;
 
-    int count = 1, totalprice = 0, newcount = 0;
+    int count = 1, newcount = 0;
+
+    float totalprice = 0;
 
     String getCount;
 
@@ -285,8 +287,9 @@ public class ViewFoodItems extends AppCompatActivity {
 
     public void ShowCartItemCount(){
 
-        showCartCount=db.getItemCount();
+       // showCartCount=db.getItemCount();
 
+        showCartCount=db.getTotalitemCount();
         showCartPrice=db.getTotalPrice();
         Log.e("CART ITEMS:",String.valueOf(showCartCount)+" "+String.valueOf(showCartPrice));
 

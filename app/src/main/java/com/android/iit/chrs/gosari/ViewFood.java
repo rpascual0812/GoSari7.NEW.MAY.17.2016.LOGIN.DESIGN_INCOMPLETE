@@ -149,7 +149,8 @@ package com.android.iit.chrs.gosari;
 
 
         public void ShowCountItems(){
-            showCartItemCount=db.getItemCount();
+           // showCartItemCount=db.getItemCount();
+            showCartItemCount=db.getTotalitemCount();
             showCartItemPrice=db.getTotalPrice();
 
             Log.e("TOTAL PRICE AND COUNT: ",String.valueOf(showCartItemCount)+" "+String.valueOf(showCartItemPrice));

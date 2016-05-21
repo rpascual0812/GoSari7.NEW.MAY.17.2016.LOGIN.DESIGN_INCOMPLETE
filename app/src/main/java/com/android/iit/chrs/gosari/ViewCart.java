@@ -69,7 +69,7 @@ public class ViewCart extends AppCompatActivity {
 
     TextView tvTotalPrice, tvNoofItems;
 
-    int totalprice, totalitems, itemprice, itemcount, updateprice = 0, newprice = 0;
+    int totalprice, totalitems, itemcount;
 
     int count = 1, getcount;
 
@@ -89,6 +89,7 @@ public class ViewCart extends AppCompatActivity {
 
     static Activity activity;
 
+    float itemprice,newprice = 0, updateprice = 0;
 
 
     @Override
@@ -106,9 +107,11 @@ public class ViewCart extends AppCompatActivity {
 
         totalprice = db.getTotalPrice();
 
-        totalitems = db.getItemCount();
+        //totalitems = db.getItemCount();
 
-        tvTotalPrice.setText("Total Price: " + String.valueOf(totalprice));
+        totalitems=db.getTotalitemCount();
+
+        tvTotalPrice.setText("Total Price:"+'\u20B1'+" "+ String.valueOf(totalprice));
 
         tvNoofItems.setText("No. of items: " + String.valueOf(totalitems));
 
@@ -283,7 +286,7 @@ public class ViewCart extends AppCompatActivity {
         alertdialogbuiler.setTitle("DO YOU WANT TO CHECKOUT");
 
         alertdialogbuiler.setMessage("# OF ITEMS: " + String.valueOf(totalitems) + "\n" +
-                "TOTAL PRICE: " + String.valueOf(totalprice));
+                "TOTAL PRICE:"+'\u20B1'+" "+String.valueOf(totalprice));
 
         alertdialogbuiler.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override

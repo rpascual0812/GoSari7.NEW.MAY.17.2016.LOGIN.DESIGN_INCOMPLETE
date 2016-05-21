@@ -11,14 +11,14 @@ public class ItemCart {
     String Cartpk_Categories;
     String CartItems;
     String CartDescription;
-    int CartPrice;
+    float CartPrice;
     int CartCount;
     String CartDeliveryTime;
     String CartDate;
 
     public ItemCart(){}
 
-    public ItemCart(int id,String Cartpk,String CartItems,String CartDescription,int CartPrice,int CartCount,String CartDeliveryTime,String CartDate){
+    public ItemCart(int id,String Cartpk,String CartItems,String CartDescription,float CartPrice,int CartCount,String CartDeliveryTime,String CartDate){
 
         this.id=id;
         this.Cartpk=Cartpk;
@@ -30,7 +30,7 @@ public class ItemCart {
         this.CartDate=CartDate;
     }
 
-    public ItemCart(String Cartpk_Categories,String Cartpk,String CartItems,String CartDescription,int CartPrice,int CartCount,String CartDeliveryTime,String CartDate){
+    public ItemCart(String Cartpk_Categories,String Cartpk,String CartItems,String CartDescription,float  CartPrice,int CartCount,String CartDeliveryTime,String CartDate){
 
         super();
         this.Cartpk=Cartpk;
@@ -74,11 +74,11 @@ public class ItemCart {
         CartDescription = cartDescription;
     }
 
-    public int getCartPrice() {
+    public float  getCartPrice() {
         return CartPrice;
     }
 
-    public void setCartPrice(int cartPrice) {
+    public void setCartPrice(float  cartPrice) {
         CartPrice = cartPrice;
     }
 
