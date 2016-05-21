@@ -188,8 +188,6 @@ public class ViewLogIn extends Activity {
     }
 
 
-
-
     public void ViewSignUp(){
 
      Intent viewSignUp = new Intent(getApplicationContext(),ViewSignUp.class);

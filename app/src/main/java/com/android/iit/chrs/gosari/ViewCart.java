@@ -91,6 +91,10 @@ public class ViewCart extends AppCompatActivity {
 
     float itemprice,newprice = 0, updateprice = 0;
 
+    ArrayList<Account>accountArrayList;
+
+    String mobile;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +104,17 @@ public class ViewCart extends AppCompatActivity {
         db = new DbHelper(this);
 
         activity=this;
+
+        accountArrayList=new ArrayList<>();
+
+        accountArrayList=db.getLoginAccount();
+
+        for(Account a:accountArrayList){
+            mobile=a.getLogin_pass();
+            Log.e("MOBILE: ",mobile);
+
+        }
+
 
         tvTotalPrice = (TextView) findViewById(R.id.tvTotalPrice);
         tvNoofItems = (TextView) findViewById(R.id.tvTotalItems);
@@ -474,8 +489,10 @@ public class ViewCart extends AppCompatActivity {
 
             HttpClient httpclient = new DefaultHttpClient();
             String output=jsonArray.toString();
-            HttpGet httpGet= new HttpGet("http://gosari.ph/api/items/checkout.php?mobile_number=09950899977&new_date=%222016-05-10%22&order="+ URLEncoder.encode(jsonArray.toString()));
-            Log.e("MESSAGE","http://gosari.ph/api/items/checkout.php?mobile_number=09950899977&new_date=%222016-05-10%22&order="+ URLEncoder.encode(jsonArray.toString()));
+          //  HttpGet httpGet= new HttpGet("http://gosari.ph/api/items/checkout.php?mobile_number=09950899977&new_date=%222016-05-10%22&order="+ URLEncoder.encode(jsonArray.toString()));
+           // Log.e("MESSAGE","http://gosari.ph/api/items/checkout.php?mobile_number=09950899977&new_date=%222016-05-10%22&order="+ URLEncoder.encode(jsonArray.toString()));
+            HttpGet httpGet= new HttpGet("http://gosari.ph/api/items/checkout.php?mobile_number="+ mobile +"&new_date=%222016-05-10%22&order="+ URLEncoder.encode(jsonArray.toString()));
+            Log.e("MESSAGE","http://gosari.ph/api/items/checkout.php?mobile_number="+ mobile +"&new_date=%222016-05-10%22&order="+ URLEncoder.encode(jsonArray.toString()));
             object.put("order",jsonArray);
             String message=object.toString();
             Log.e("OUTPUT:",message);
