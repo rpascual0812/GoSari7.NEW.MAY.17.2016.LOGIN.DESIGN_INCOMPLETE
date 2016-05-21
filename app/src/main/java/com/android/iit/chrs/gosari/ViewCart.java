@@ -252,15 +252,29 @@ public class ViewCart extends AppCompatActivity {
         alertDialogBuilder.setPositiveButton("UPDATE", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(getApplicationContext(), "OK", Toast.LENGTH_SHORT).show();
-                String strcount = etCart.getText().toString();
-                getcount = Integer.parseInt(strcount);
-                updateprice = itemprice / itemcount;
-                newprice = getcount * updateprice;
 
-                Log.e("UPDATE: ", "ITEM HAS BEEN UPDATED");
-                db.updateItem(item, newprice, getcount);
-                recreate();
+                String strcount = etCart.getText().toString();
+
+                if(strcount.equals("")){
+
+                    Toast.makeText(getApplicationContext(),"Please enter a valid number.", Toast.LENGTH_SHORT).show();
+                }
+
+                else {
+                    getcount = Integer.parseInt(strcount);
+                    if(getcount<1){
+
+                        Toast.makeText(getApplicationContext(),"Please enter a valid number.", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        updateprice = itemprice / itemcount;
+                        newprice = getcount * updateprice;
+
+                        Log.e("UPDATE: ", "ITEM HAS BEEN UPDATED");
+                        db.updateItem(item, newprice, getcount);
+                        recreate();
+                    }
+                }
 
             }
         });

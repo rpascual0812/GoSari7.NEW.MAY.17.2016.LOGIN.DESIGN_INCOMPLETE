@@ -216,31 +216,43 @@ public class ViewFoodItems extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {
 
-
                 getCount = etCart.getText().toString();
-
-                newcount = Integer.parseInt(getCount);
-
 
                 boolean verify = db.verifyItem(items);
 
-
                 Toast.makeText(getApplicationContext(), items, Toast.LENGTH_SHORT).show();
+
                 if (verify == true) {
                     CartAlert();
                     count = 1;
 
                 } else {
 
-                    InserData();
-                    count = 1;
-                    Intent intent = getIntent();
-                    finish();
-                    startActivity(intent);
 
 
+                    if (getCount.equals("")) {
+
+                        Log.e("MESSAGE", "ENTER A VALID INPUT");
+                        Toast.makeText(getApplicationContext(),"Please enter a valid number.", Toast.LENGTH_SHORT).show();
+
+                    } else {
+
+                        newcount = Integer.parseInt(getCount);
+
+                        if (newcount < 1) {
+                            Toast.makeText(getApplicationContext(),"Please enter a valid number.", Toast.LENGTH_SHORT).show();
+                            Log.e("MESSAGE: ", "PLEASE Enter a valid Count");
+
+                        } else {
+                             InserData();
+                            count = 1;
+                            Intent intent = getIntent();
+                            finish();
+                            startActivity(intent);
+                        }
 
 
+                    }
                 }
 
             }

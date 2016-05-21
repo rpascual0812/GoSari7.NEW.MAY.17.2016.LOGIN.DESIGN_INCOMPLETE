@@ -82,14 +82,17 @@ public class ViewSignUp extends Activity {
                 Log.e("LENGTH:",String.valueOf(length));
 
 
-                if(checkPassWordAndConfirmPassword(in_pass,in_repeatPass)&&!checkifnull(in_mobile,in_name,in_pass,in_location)&&length<11)
+                if(checkPassWordAndConfirmPassword(in_pass,in_repeatPass)|!checkifnull(in_mobile,in_name,in_pass,in_location)|length<11)
                 {
                     ClearFields();
                     AlerDialogInvalidDetails();
                     Log.e("MESSAGE:","Invalid Details");
                 }
                 else {
-                   HttpGetLogin(in_mobile, in_name, in_pass, in_location, in_email);
+
+                    Log.e("MESSAGE:","REGISTER SUCCESS");
+
+                    HttpGetLogin(in_mobile, in_name, in_pass, in_location, in_email);
                     ClearFields();
                     if(checkifRegistered==false){
                         finish();

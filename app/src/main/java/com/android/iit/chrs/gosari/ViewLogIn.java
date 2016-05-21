@@ -81,24 +81,35 @@ public class ViewLogIn extends Activity {
                 mobile = inMobile.getText().toString();
                 pass = inPassword.getText().toString();
 
-                if (HttpGetLogin(mobile, pass) == true) {
+                if (mobile.equals("")|pass.equals("")){
                     inMobile.setText("");
                     inPassword.setText("");
-                    db.addAccount(new Account(mobile,pass));
-                    testlist = db.getLoginAccount();
-                    for (Account account : testlist) {
-                        message =account.getLogin_mobile()+account.getLogin_pass();
-                        Log.e("OUTPUT DATABASE:",message);
-                    }
-                    ViewMainActivity();
-                }
+                    Log.e("MESSAGE: ","INVALID DETAILS");
+                    Toast.makeText(getApplicationContext(),"Please enter a valid detail.",Toast.LENGTH_SHORT).show();
 
+            }
                 else {
-                    inMobile.setText("");
-                    inPassword.setText("");
-                    Toast.makeText(getApplicationContext(), "No such account exists!", Toast.LENGTH_LONG).show();
 
 
+                    Log.e("MESSAGE: ","LOGGING IN");
+
+                     if (HttpGetLogin(mobile, pass) == true) {
+                        inMobile.setText("");
+                        inPassword.setText("");
+                        db.addAccount(new Account(mobile, pass));
+                        testlist = db.getLoginAccount();
+                        for (Account account : testlist) {
+                            message = account.getLogin_mobile() + account.getLogin_pass();
+                            Log.e("OUTPUT DATABASE:", message);
+                        }
+                        ViewMainActivity();
+                    } else {
+                        inMobile.setText("");
+                        inPassword.setText("");
+                        Toast.makeText(getApplicationContext(), "No such account exists!", Toast.LENGTH_SHORT).show();
+
+
+                    }
                 }
 
             }
@@ -175,6 +186,8 @@ public class ViewLogIn extends Activity {
                 return true;
 
     }
+
+
 
 
     public void ViewSignUp(){
