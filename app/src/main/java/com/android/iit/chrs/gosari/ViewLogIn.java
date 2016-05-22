@@ -42,7 +42,7 @@ public class ViewLogIn extends Activity {
 
     String msg;
 
-    TextView tvSignUp;
+
 
     DbHelper db;
 
@@ -54,7 +54,7 @@ public class ViewLogIn extends Activity {
 
     String message;
 
-
+    Button btnSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class ViewLogIn extends Activity {
         db=new DbHelper(this);
 
 
-        tvSignUp=(TextView)findViewById(R.id.tvSignUp);
+        btnSignUp=(Button) findViewById(R.id.btnSignUp);
         inMobile = (EditText) findViewById(R.id.inMobile);
         inPassword = (EditText) findViewById(R.id.inPassword);
         btnlogin = (Button) findViewById(R.id.btnlogin);
@@ -115,12 +115,12 @@ public class ViewLogIn extends Activity {
             }
         });
 
-        tvSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+       btnSignUp.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
                ViewSignUp();
-            }
-        });
+           }
+       });
     }
 
 
