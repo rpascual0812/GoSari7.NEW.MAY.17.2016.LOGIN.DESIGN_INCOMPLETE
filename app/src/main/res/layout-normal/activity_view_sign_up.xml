@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -10,149 +12,149 @@
     android:background="@drawable/background"
     tools:context="com.android.iit.chrs.gosari.ViewSignUp">
 
+            <ImageView
+                android:layout_height="150dp"
+                android:layout_width="150dp"
+                android:src="@drawable/logo_new"
+                android:paddingTop="10dp"
+                android:layout_gravity="center"
+                />
+
     <ScrollView
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
         >
 
-        <LinearLayout
-            android:layout_height="wrap_content"
+        <android.support.v7.widget.CardView
+            android:layout_marginTop="20dp"
             android:layout_width="fill_parent"
-            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            card_view:contentPadding="5dp"
+            card_view:cardElevation="3dp"
+            card_view:cardBackgroundColor="#eee9e9"
+            card_view:cardCornerRadius="10dp"
+            card_view:contentPaddingTop="10dp"
+            card_view:contentPaddingBottom="10dp">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             >
-            <ImageView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:src="@drawable/logo_new"
-                android:layout_gravity="center"
-                android:paddingTop="10dp"
-                />
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:textColorHint="#FFFFFF"
-                >
 
                 <EditText
+                    android:layout_marginTop="10dp"
                     android:id="@+id/inSignUp_Name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:hint="Name"
-                    android:textColorHint="#FFFFFF"
-                    android:textColor="#FFFFFF"
-                    android:theme="@style/MyEditTextTheme"
+                    android:textColorHint="#000000"
+                    android:textColor="#000000"
+                    android:maxLines="1"
+                    android:drawableLeft="@drawable/ic_account_hdpi"
+                    android:drawablePadding="5dp"
                     />
-            </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:textColorHint="#FFFFFF"
-                >
+
 
                 <EditText
+                    android:layout_marginTop="10dp"
                     android:id="@+id/inSignUp_Email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:hint="Email"
-                    android:textColorHint="#FFFFFF"
-                    android:textColor="#FFFFFF"
-                    android:theme="@style/MyEditTextTheme"
+                    android:textColorHint="#000000"
+                    android:textColor="#000000"
+                    android:maxLines="1"
+                    android:layout_below="@+id/inSignUp_Name"
+                    android:drawableLeft="@drawable/ic_email_hdpi"
+                    android:drawablePadding="5dp"
                     />
-            </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:textColorHint="#FFFFFF"
-                >
+
 
                 <EditText
+                    android:layout_marginTop="10dp"
                     android:id="@+id/inSignUp_Mobile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="phone"
                     android:hint="Mobile"
                     android:maxLength="11"
-                    android:textColorHint="#FFFFFF"
-                    android:textColor="#FFFFFF"
-                    android:theme="@style/MyEditTextTheme"
+                    android:textColorHint="#000000"
+                    android:textColor="#000000"
+                    android:maxLines="1"
+                    android:layout_below="@+id/inSignUp_Email"
+                    android:drawablePadding="5dp"
+                    android:drawableLeft="@drawable/ic_phone_hdpi"
                     />
-            </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:textColorHint="#FFFFFF"
-                >
                 <EditText
+                    android:layout_marginTop="10dp"
                     android:id="@+id/inSignUp_Location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:hint="Location"
-                    android:textColorHint="#FFFFFF"
-                    android:textColor="#FFFFFF"
-                    android:theme="@style/MyEditTextTheme"
+                    android:textColorHint="#000000"
+                    android:textColor="#000000"
+                    android:maxLines="1"
+                    android:layout_below="@+id/inSignUp_Mobile"
+                    android:drawablePadding="5dp"
+                    android:drawableLeft="@drawable/ic_location_hdpi"
                     />
-            </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:textColorHint="#FFFFFF"
-                >
                 <EditText
+                    android:layout_marginTop="10dp"
                     android:id="@+id/inSignUp_Password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
                     android:hint="Password"
-                    android:textColorHint="#FFFFFF"
-                    android:textColor="#FFFFFF"
-                    android:theme="@style/MyEditTextTheme"
+                    android:textColorHint="#000000"
+                    android:textColor="#000000"
+                    android:maxLines="1"
+                    android:layout_below="@+id/inSignUp_Location"
+                    android:drawablePadding="5dp"
+                    android:drawableLeft="@drawable/ic_lock_hdpi"
                     />
-            </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:textColorHint="#FFFFFF"
-                >
                 <EditText
+                    android:layout_marginTop="10dp"
                     android:id="@+id/inSignUp_RepeatPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
                     android:hint="Repeat Password"
-                    android:textColorHint="#FFFFFF"
-                    android:textColor="#FFFFFF"
-                    android:theme="@style/MyEditTextTheme"
+                    android:textColorHint="#000000"
+                    android:textColor="#000000"
+                    android:maxLines="1"
+                    android:layout_below="@+id/inSignUp_Password"
+                    android:drawablePadding="5dp"
+                    android:drawableLeft="@drawable/ic_lock_hdpi"
                     />
-            </android.support.design.widget.TextInputLayout>
 
             <Button
+                android:layout_marginTop="20dp"
                 android:id="@+id/btnRegister"
                 style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:textColor="#FFFFFF"
                 android:text="REGISTER"
                 android:textStyle="bold"
-                android:background="@drawable/round_corner_btn"
-                android:backgroundTint="@color/colorPrimary"/>
+                android:background="@color/colorPrimary"
+                android:layout_below="@+id/inSignUp_RepeatPassword"/>
 
 
-        </LinearLayout>
-    </ScrollView>
+
+        </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+
+
+</ScrollView>
 
 </LinearLayout>
