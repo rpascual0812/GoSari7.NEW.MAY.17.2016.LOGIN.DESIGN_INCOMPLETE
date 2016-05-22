@@ -47,15 +47,8 @@
                 android:value="com.android.iit.chrs.gosari.ViewFood" />
         </activity>
         <activity android:name=".ViewProfile"
-            android:label="Profile"
-            android:theme="@style/AppTheme">
-           <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.android.iit.chrs.gosari.ViewCategory" />
-        <intent-filter>
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.DEFAULT" />
-        </intent-filter>
+            android:theme="@style/AppTheme.NoActionBar"
+            >
         </activity>
         <activity
             android:name=".ViewCart"

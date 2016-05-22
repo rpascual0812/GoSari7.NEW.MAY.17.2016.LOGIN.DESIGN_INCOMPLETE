@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.apache.http.HttpResponse;
@@ -57,12 +58,14 @@ public class ViewProfile extends Activity {
 
     String oldpass,newpass,confirmpass;
 
+
     //www.gosari.ph/api/users/change_password.php?mobile_number=09056075270&password=a
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_profile);
+
         db=new DbHelper(this);
 
         accountArrayList=db.getLoginAccount();
@@ -85,9 +88,12 @@ public class ViewProfile extends Activity {
         in_newPass=(EditText)findViewById(R.id.in_newPassWord);
         in_confirmNewPass=(EditText)findViewById(R.id.in_confirmnewPassWord);
 
-        tv_name.setText(acc_name);
-        tv_mobile.setText(acc_num);
-        tv_emailAd.setText(acc_email);
+
+
+
+        tv_name.setText("Name : "+acc_name);
+        tv_mobile.setText("Mobile : "+acc_num);
+        tv_emailAd.setText("Email : "+acc_email);
 
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
