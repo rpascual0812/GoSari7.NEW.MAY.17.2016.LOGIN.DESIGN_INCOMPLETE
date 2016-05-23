@@ -359,7 +359,7 @@ public class ViewCart extends AppCompatActivity {
 
         ShowDialogTimeDate.setContentView(R.layout.date_time_picker);
 
-        ShowDialogTimeDate.setTitle("Set Time and Date for Delivery");
+        ShowDialogTimeDate.setTitle("Set Date and Time");
 
 
         Button btnCancel = (Button) ShowDialogTimeDate.findViewById(R.id.btn_cancel);
