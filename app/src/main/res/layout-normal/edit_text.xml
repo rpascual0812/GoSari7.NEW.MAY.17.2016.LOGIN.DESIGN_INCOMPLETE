@@ -3,15 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:gravity="right"
-    android:paddingRight="115dp"
-    >
 
+    >
+<LinearLayout
+    android:layout_height="wrap_content"
+    android:layout_width="fill_parent"
+    android:gravity="center"
+    >
     <Button
         android:id="@+id/btnSub"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="-"
+        android:gravity="center"
         />
     <EditText
         android:id="@+id/etCart"
@@ -19,14 +23,17 @@
         android:layout_width="50dp"
         android:inputType="number"
         android:maxLength="3"
+        android:gravity="center"
         />
 
     <Button
         android:id="@+id/btnAdd"
         android:layout_height="50dp"
         android:layout_width="50dp"
+        android:gravity="center"
         android:text="+"
         />
+    </LinearLayout>
 
 
 

@@ -3,9 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:gravity="right"
-    android:paddingRight="115dp"
     >
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:gravity="center"
+        >
 
     <Button
         android:id="@+id/btnSub2"
@@ -28,6 +31,6 @@
         android:text="+"
         />
 
-
+</LinearLayout>
 
 </LinearLayout>

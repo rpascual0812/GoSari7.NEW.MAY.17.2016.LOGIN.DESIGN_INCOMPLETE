@@ -26,6 +26,7 @@ import java.io.InputStreamReader;
 import java.util.Objects;
 import android.content.Context;
 import android.widget.ThemedSpinnerAdapter;
+import android.widget.Toast;
 
 public class ViewSignUp extends Activity {
 
@@ -82,15 +83,18 @@ public class ViewSignUp extends Activity {
                 Log.e("LENGTH:",String.valueOf(length));
 
 
-                if(checkPassWordAndConfirmPassword(in_pass,in_repeatPass)|!checkifnull(in_mobile,in_name,in_pass,in_location)|length<11)
+                if(!checkPassWordAndConfirmPassword(in_pass,in_repeatPass,in_name,in_mobile,in_email,in_location)|length<11)
                 {
-                    ClearFields();
-                    AlerDialogInvalidDetails();
+                    //ClearFields();
+                    Toast.makeText(getApplicationContext(),"Invalid Details!",Toast.LENGTH_SHORT).show();
+                    //AlerDialogInvalidDetails();
                     Log.e("MESSAGE:","Invalid Details");
                 }
                 else {
 
+
                     Log.e("MESSAGE:","REGISTER SUCCESS");
+                    ClearFields();
 
                     HttpGetLogin(in_mobile, in_name, in_pass, in_location, in_email);
                     ClearFields();
@@ -169,10 +173,10 @@ public class ViewSignUp extends Activity {
     }
 
 
-    public boolean checkPassWordAndConfirmPassword(String password,String confirmPassword)
+    public boolean checkPassWordAndConfirmPassword(String password,String confirmPassword,String name,String mobile,String email,String location)
     {
         boolean pstatus = false;
-        if (confirmPassword != null && password != null)
+        if (confirmPassword != null && password != null&&name!=null&&mobile!=null&&email!=null&&location!=null)
         {
             if (password.equals(confirmPassword))
             {
@@ -184,14 +188,14 @@ public class ViewSignUp extends Activity {
     }
 
 
-    public boolean checkifnull(String name,String password,String location,String mobile){
+   /* public boolean checkifnull(String name,String password,String location,String mobile){
 
         boolean notnull=false;
         if(name==null|password==null|location==null|mobile==null){
             notnull=true;
         }
         return notnull;
-    }
+    }*/
 
 
     public void AlerDialogInvalidDetails(){
