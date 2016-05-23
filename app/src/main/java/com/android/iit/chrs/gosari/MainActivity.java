@@ -1,8 +1,14 @@
 package com.android.iit.chrs.gosari;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.TransitionDrawable;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,10 +25,16 @@ public class MainActivity extends AppCompatActivity {
     Animation slide_in,pop_in,pop_in2;
 
     ImageView iv_buildings,iv_gosariIcons;
+
+
+  //  TransitionDrawable transitionDrawable;
+  AnimationDrawable anim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         iv_buildings=(ImageView)findViewById(R.id.iv_buildings);
         iv_gosariIcons=(ImageView)findViewById(R.id.iv_gosariIcon);
         btnStart=(Button)findViewById(R.id.btnStart);
@@ -38,13 +50,16 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     }
+
 
     public void ViewCategory(){
         Intent viewCategory = new Intent(getApplicationContext(),ViewCategory.class);
         startActivity(viewCategory);
 
     }
+
 
     public void Slide_in(){
         slide_in=AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_in);
@@ -70,23 +85,57 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     public void Pop_in(){
         btnStart.setVisibility(View.VISIBLE);
         pop_in=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.pop);
         btnStart.startAnimation(pop_in);
 
+        btnStart.setBackgroundResource(R.drawable.change_background_btn);
+
+        anim = (AnimationDrawable)
+                btnStart.getBackground();
+
+        //transitionDrawable=(TransitionDrawable)btnStart.getBackground();
+       // transitionDrawable.startTransition(3000);
+
+
+        pop_in.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+               // transitionDrawable.resetTransition();
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+               // transitionDrawable.resetTransition();
+                anim.start();
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+               // transitionDrawable.resetTransition();
+
+            }
+        });
+
+
     }
+
+
     public void Pop_in2(){
         pop_in2=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.pop);
         iv_gosariIcons.startAnimation(pop_in2);
 
     }
+
+
     @Override
     public void onBackPressed() {
         moveTaskToBack(true);
     }
-
-
 
 
 
