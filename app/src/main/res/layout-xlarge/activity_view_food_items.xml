@@ -3,87 +3,102 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/background"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/dark_blue_background"
     tools:context="com.android.iit.chrs.gosari.ViewFoodItems">
-    <android.support.design.widget.CollapsingToolbarLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:minHeight="62dp"
-        android:background="@android:color/transparent"
-        android:fitsSystemWindows="true"
-        app:layout_scrollFlags="scroll|enterAlwaysCollapsed|enterAlways">
-        <android.support.v7.widget.CardView
-            android:id="@+id/cardPersonal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:layout_margin="5dp">
 
-            <SearchView
-                android:id="@+id/searchView1"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:queryHint="Search..."
-                >
-            </SearchView>
-        </android.support.v7.widget.CardView>
-    </android.support.design.widget.CollapsingToolbarLayout>
-
-
-    <LinearLayout
-        android:layout_marginTop="70dp"
-        android:gravity="center"
-        android:orientation="vertical"
+    <android.support.v7.widget.CardView
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:id="@+id/cardPersonal"
         android:layout_width="fill_parent"
-        android:layout_height="520dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
 
         >
-
-<GridView
-        android:id="@+id/list_food"
-        android:layout_width="wrap_content"
-        android:layout_height="580dp"
-        android:columnWidth="105dp"
-        android:stretchMode="columnWidth"
-        android:gravity="center"
-        android:numColumns="auto_fit"
-        android:horizontalSpacing="10dp"
-        android:verticalSpacing="10dp"
-        tools:listitem="@layout/row_food_items">
-
-    </GridView>
-
-     </LinearLayout>
+        <SearchView
+            android:id="@+id/searchView1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:queryHint="Search..."
+            >
+        </SearchView>
+    </android.support.v7.widget.CardView>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cardPersonal"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimaryDark"
+        android:paddingLeft="10dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        >
+        <TextView
+            android:id="@+id/tvFoodItems_ShowTotalCount"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Cart 0 item(s)-PHP 0"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            />
+    </LinearLayout>
+
+
+    <ScrollView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        >
+
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="130dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            >
+            <GridView
+                android:id="@+id/list_food"
+                android:layout_width="fill_parent"
+                android:layout_height="670dp"
+                android:columnWidth="200dp"
+                android:stretchMode="columnWidth"
+                android:gravity="center"
+                android:numColumns="auto_fit"
+                android:horizontalSpacing="5dp"
+                android:verticalSpacing="5dp"
+                tools:listitem="@layout/row_food_items">
+
+            </GridView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
-        android:gravity="bottom">
+        android:gravity="bottom"
+        >
 
         <ImageButton
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@drawable/ic_shoppingcartwhite"
             android:background="@drawable/circle"
             android:id="@+id/imgbtnViewCart2"
-            android:layout_gravity="right|bottom" />
+            android:layout_gravity="right|bottom"
+            android:layout_marginBottom="5dp"/>
 
 
     </LinearLayout>
 
 </RelativeLayout>
-
-
-
-
-
-
-
-

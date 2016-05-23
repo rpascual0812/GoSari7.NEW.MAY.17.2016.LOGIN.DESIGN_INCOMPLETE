@@ -2,15 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/background"
-    >
+    android:background="@drawable/dark_blue_background">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
 
         <ListView
@@ -20,36 +21,54 @@
             android:layout_width="match_parent"
             android:layout_weight="1.0"
             android:divider="@null"
-            android:dividerHeight="30dp">
+            android:dividerHeight="0dp"
+            >
         </ListView>
-
-        <TextView
-            android:id="@+id/tvTotalItems"
+        <RelativeLayout
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="# ITEMS: "
-            android:textSize="30sp"
-            android:textColor="#f5fffa"
+            android:layout_width="fill_parent"
+            android:background="@color/colorPrimary"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            >
 
-            />
+            <TextView
+                android:id="@+id/tvTotalItems"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="# ITEMS: "
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:textColor="#FFFFFF"
 
-        <TextView
-            android:id="@+id/tvTotalPrice"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="TOTAL PRICE: "
-            android:textSize="30sp"
-            android:textColor="#f5fffa"
-            />
+                />
+            <TextView
+                android:id="@+id/tvTotalPrice"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:text="TOTAL PRICE: "
+                android:textSize="15sp"
+                android:textColor="#FFFFFF"
+                android:gravity="right"
+                android:textStyle="bold"
+                />
+        </RelativeLayout>
+
 
         <Button
             android:id="@+id/btnCheckout"
-            android:background="@color/colorPrimary"
-            android:layout_width="match_parent"
+            android:background="@color/colorPrimaryDark"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="CHECK OUT"
-            android:textSize="30dp"
-            android:textColor="#f5fffa"/>
+            android:textSize="25sp"
+            android:textColor="#f5fffa"
+            />
 
     </LinearLayout>
+
+
+
 </LinearLayout>
