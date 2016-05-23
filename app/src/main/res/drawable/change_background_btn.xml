@@ -3,8 +3,5 @@
 
     android:oneshot="false">
 
-    <item android:drawable="@drawable/pabili_po_blue" android:duration="100" />
-    <item android:drawable="@drawable/pabili_po_green" android:duration="100" />
-    <item android:drawable="@drawable/buttonpabilipo" android:duration="100" />
 
 </animation-list>

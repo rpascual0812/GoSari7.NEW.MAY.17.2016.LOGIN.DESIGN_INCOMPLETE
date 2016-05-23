@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -17,7 +18,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
-            android:paddingTop="50dp"
+            android:paddingTop="30dp"
+            android:paddingLeft="80dp"
+            android:paddingRight="80dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -26,112 +29,118 @@
 
             <ImageView
                 android:id="@+id/ivTitleSignUp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 android:background="@drawable/logo_new"
                 android:layout_gravity="center"
-                />
-
-
-            <TextView
-                android:paddingTop="10dp"
-                android:id="@+id/tvLoginTitle"
-                android:textColor="#FFFFFF"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="L O G  I N"
-                android:textSize="50sp"
-                android:fontFamily="sans-serif-condensed"
-                android:gravity="center"
-                android:textStyle="bold|italic"
                 />
 
             <LinearLayout
                 android:paddingTop="10dp"
                 android:layout_height="wrap_content"
                 android:layout_width="fill_parent"
-
                 android:orientation="vertical"
                 >
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
+                <android.support.v7.widget.CardView
+                    android:layout_marginTop="60dp"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="#FFFFFF"
-                    android:background="@android:color/transparent">
+                    card_view:contentPadding="5dp"
+                    card_view:cardElevation="3dp"
+                    card_view:cardBackgroundColor="#eee9e9"
+                    card_view:cardCornerRadius="10dp"
+                    card_view:contentPaddingTop="10dp"
+                    card_view:contentPaddingBottom="10dp">
 
                     <EditText
-                        android:paddingTop="30dp"
+
                         android:id="@+id/inMobile"
                         android:layout_height="wrap_content"
                         android:layout_width="fill_parent"
-                        android:hint="Mobile"
-                        android:textColorHint="#FFFFFF"
-                        android:backgroundTint="#FFFFFF"
+                        android:hint="@string/Login_mobile"
+                        android:textColorHint="#000000"
                         android:inputType="phone"
-                        android:textColor="#FFFFFF"
-
+                        android:textColor="#000000"
+                        android:drawableLeft="@drawable/ic_phone_hdpi"
+                        android:drawablePadding="5dp"
+                        android:maxLines="1"
+                        android:maxLength="11"
                         />
-                </android.support.design.widget.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="#FFFFFF"
-                    android:background="@android:color/transparent">
+                    card_view:contentPadding="5dp"
+                    card_view:cardElevation="3dp"
+                    card_view:cardBackgroundColor="#eee9e9"
+                    card_view:cardCornerRadius="10dp"
+                    android:layout_marginTop="60dp"
+                    card_view:contentPaddingTop="10dp"
+                    card_view:contentPaddingBottom="10dp">
 
                     <EditText
-                        android:paddingTop="30dp"
+
                         android:id="@+id/inPassword"
                         android:layout_height="wrap_content"
                         android:layout_width="fill_parent"
-                        android:hint="Password"
+                        android:hint="@string/Login_pass"
                         android:inputType="textPassword"
-                        android:textColorHint="#FFFFFF"
-                        android:backgroundTint="#FFFFFF"
-                        android:textColor="#FFFFFF"
+                        android:textColorHint="#000000"
+                        android:textColor="#000000"
+                        android:drawableLeft="@drawable/ic_lock_hdpi"
+                        android:drawablePadding="5dp"
+                        android:maxLines="1"
                         />
 
-                </android.support.design.widget.TextInputLayout>
+                </android.support.v7.widget.CardView>
 
                 <Button
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="70dp"
                     android:id="@+id/btnlogin"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/round_corner_btn"
-                    android:text="Confirm"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/Login_btn"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
                     android:textColor="#FFFFFF"
+                    android:elevation="10dp"
                     />
 
                 <LinearLayout
-                    android:paddingTop="30dp"
+                    android:layout_marginTop="40dp"
                     android:layout_height="wrap_content"
                     android:layout_width="fill_parent"
                     android:orientation="vertical"
                     android:gravity="center"
                     >
                     <TextView
-                        android:paddingTop="20dp"
+                        android:paddingTop="30dp"
                         android:id="@+id/tvtitle_signup"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:text="Don't have an account yet ?"
+                        android:text="Don't have an account yet?"
                         android:textStyle="bold"
                         android:textSize="15sp"
                         android:textColor="#FFFFFF"
                         />
-                    <TextView
 
-                        android:id="@+id/tvSignUp"
+
+                    <Button
+                        android:layout_marginTop="50dp"
+                        android:id="@+id/btnSignUp"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="S I G N  U P"
-                        android:textStyle="bold|italic"
-                        android:textSize="50sp"
+                        android:background="@color/colorPrimaryDark"
+                        android:text="@string/Signup_btn"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
                         android:textColor="#FFFFFF"
-                        android:onClick="onClick"
-                        android:clickable="true"
+                        android:elevation="10dp"
                         />
 
                 </LinearLayout>
