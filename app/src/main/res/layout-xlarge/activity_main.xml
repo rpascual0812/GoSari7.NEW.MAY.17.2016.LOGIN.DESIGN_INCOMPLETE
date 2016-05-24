@@ -32,7 +32,7 @@
                     android:id="@+id/btnStart"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:background="@drawable/buttonpabilipo"
+                    android:background="@drawable/change_background_btn"
                     android:layout_alignLeft="@+id/iv_gosariIcon"
                     android:layout_marginBottom="-20dp"
                     android:layout_marginLeft="70dp"

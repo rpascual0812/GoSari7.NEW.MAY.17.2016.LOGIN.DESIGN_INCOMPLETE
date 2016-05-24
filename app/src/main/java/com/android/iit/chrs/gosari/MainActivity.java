@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
 
   //  TransitionDrawable transitionDrawable;
-//  AnimationDrawable anim;
+AnimationDrawable anim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,10 +91,10 @@ public class MainActivity extends AppCompatActivity {
         pop_in=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.pop);
        btnStart.startAnimation(pop_in);
 
-      /*  btnStart.setBackgroundResource(R.drawable.change_background_btn);
+      btnStart.setBackgroundResource(R.drawable.change_background_btn);
 
         anim = (AnimationDrawable)
-                btnStart.getBackground();*/
+                btnStart.getBackground();
 
         //transitionDrawable=(TransitionDrawable)btnStart.getBackground();
        // transitionDrawable.startTransition(3000);
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                // transitionDrawable.resetTransition();
-               // anim.start();
+               anim.start();
 
             }
 
