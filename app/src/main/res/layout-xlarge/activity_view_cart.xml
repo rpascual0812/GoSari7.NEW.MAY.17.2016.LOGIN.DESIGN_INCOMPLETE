@@ -22,6 +22,8 @@
             android:layout_weight="1.0"
             android:divider="@null"
             android:dividerHeight="0dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginLeft="60dp"
             >
         </ListView>
         <RelativeLayout
