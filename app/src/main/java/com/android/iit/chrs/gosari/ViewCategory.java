@@ -119,6 +119,7 @@ public class ViewCategory extends AppCompatActivity
         Intent viewCheckOutHistory=new Intent(getApplicationContext(),ViewChkoutHistory.class);
         startActivity(viewCheckOutHistory);
     }
+
     public void ShowProfile(){
         Intent viewProfile = new Intent(getApplicationContext(),ViewProfile.class);
         startActivity(viewProfile);

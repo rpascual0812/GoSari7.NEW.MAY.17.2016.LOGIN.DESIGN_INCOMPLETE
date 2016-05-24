@@ -31,7 +31,6 @@ public class ItemFood {
         this.deliverytime=deliverytime;
     }
 
-
     public String getPk() {
         return pk;
     }

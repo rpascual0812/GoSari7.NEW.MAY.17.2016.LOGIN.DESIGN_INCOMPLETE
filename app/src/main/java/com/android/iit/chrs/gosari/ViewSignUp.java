@@ -3,9 +3,11 @@ package com.android.iit.chrs.gosari;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.view.ContextThemeWrapper;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -43,15 +45,19 @@ public class ViewSignUp extends Activity {
     EditText et_mobile,et_name,et_pass,et_location,et_email,et_repeatPass;
 
 
+    TelephonyManager telemamanger;
+
+    String getSimNumber,mobilenumber;
+
+    ConnectionDetector cd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_sign_up);
-
+        telemamanger = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
-
-
 
         btnRegister=(Button)findViewById(R.id.btnRegister);
         et_email=(EditText)findViewById(R.id.inSignUp_Email);
@@ -60,7 +66,7 @@ public class ViewSignUp extends Activity {
         et_pass=(EditText)findViewById(R.id.inSignUp_Password);
         et_location=(EditText)findViewById(R.id.inSignUp_Location);
         et_repeatPass=(EditText)findViewById(R.id.inSignUp_RepeatPassword);
-
+        getMobileNum();
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,14 +105,14 @@ public class ViewSignUp extends Activity {
                     HttpGetLogin(in_mobile, in_name, in_pass, in_location, in_email);
                     ClearFields();
                     if(checkifRegistered==false){
-                        finish();
-                    }
+
+                            finish();
+                        }
+
                     else {
                         AlertDialogAlreadyRegistered();
                         Log.e("MESSAGE: ","ALREADY REGISTERED");
                     }
-
-
                 }
             }
         });
@@ -230,6 +236,41 @@ public class ViewSignUp extends Activity {
         });
 
     }
+
+
+    public void getMobileNum(){
+
+        getSimNumber = telemamanger.getLine1Number();
+        Log.e("MESSAGE: ","SIM NUMBER"+getSimNumber);
+        et_mobile.setText(getSimNumber);
+
+    }
+
+
+    public void minimizeApp() {
+        Intent startMain = new Intent(Intent.ACTION_MAIN);
+        startMain.addCategory(Intent.CATEGORY_HOME);
+        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startMain);
+    }
+
+
+    public void ShowAlertNoInternet(){
+        AlertDialog.Builder alertdialogbuilder=new AlertDialog.Builder(this);
+        alertdialogbuilder.setTitle("Alert!");
+        alertdialogbuilder.setMessage("Please check if your connected to the internet?");
+        alertdialogbuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                minimizeApp();
+
+            }
+        });
+        AlertDialog alertDialog=alertdialogbuilder.create();
+        alertDialog.show();
+
+    }
+
 
 
 

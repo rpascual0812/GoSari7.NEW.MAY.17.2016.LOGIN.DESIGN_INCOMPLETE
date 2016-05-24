@@ -38,7 +38,6 @@ public class ItemCartCursorAdapter extends ArrayAdapter<ItemCart> {
     DbHelper db;
 
 
-
     public ItemCartCursorAdapter (Context context,ArrayList<ItemCart> items) {
         super(context, R.layout.row_cart_items,items);
         this.context=context;

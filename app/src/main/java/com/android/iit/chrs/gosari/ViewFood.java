@@ -158,6 +158,7 @@ package com.android.iit.chrs.gosari;
             ShowCartItems.setText("Cart "+showCartItemCount+" item(s) - "+'\u20B1'+" "+showCartItemPrice);
         }
 
+
         public static void restart(){
             activity.recreate();
         }

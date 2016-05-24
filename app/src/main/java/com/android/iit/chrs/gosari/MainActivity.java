@@ -2,6 +2,7 @@ package com.android.iit.chrs.gosari;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
@@ -9,6 +10,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.net.Uri;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView iv_buildings,iv_gosariIcons;
 
+    ConnectionDetector cd;
+
+
 
   //  TransitionDrawable transitionDrawable;
 AnimationDrawable anim;
@@ -34,6 +39,9 @@ AnimationDrawable anim;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        cd=new ConnectionDetector(getApplicationContext());
+
+
 
         iv_buildings=(ImageView)findViewById(R.id.iv_buildings);
         iv_gosariIcons=(ImageView)findViewById(R.id.iv_gosariIcon);
@@ -41,7 +49,13 @@ AnimationDrawable anim;
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ViewCategory();
+                if(cd.isConnectingToInternet()) {
+                    ViewCategory();
+                }
+
+                else {
+                    ShowAlertNoInternet();
+                }
             }
         });
         Slide_in();
@@ -86,6 +100,7 @@ AnimationDrawable anim;
     }
 
 
+
     public void Pop_in(){
         btnStart.setVisibility(View.VISIBLE);
         pop_in=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.pop);
@@ -125,6 +140,7 @@ AnimationDrawable anim;
     }
 
 
+
     public void Pop_in2(){
         pop_in2=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.pop);
         iv_gosariIcons.startAnimation(pop_in2);
@@ -132,9 +148,34 @@ AnimationDrawable anim;
     }
 
 
+    public void ShowAlertNoInternet(){
+        AlertDialog.Builder alertdialogbuilder=new AlertDialog.Builder(this);
+        alertdialogbuilder.setTitle("Alert!");
+        alertdialogbuilder.setMessage("Please check if your connected to the internet?");
+        alertdialogbuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                minimizeApp();
+
+            }
+        });
+        AlertDialog alertDialog=alertdialogbuilder.create();
+        alertDialog.show();
+
+    }
+
+
     @Override
     public void onBackPressed() {
         moveTaskToBack(true);
+    }
+
+
+    public void minimizeApp() {
+        Intent startMain = new Intent(Intent.ACTION_MAIN);
+        startMain.addCategory(Intent.CATEGORY_HOME);
+        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startMain);
     }
 
 

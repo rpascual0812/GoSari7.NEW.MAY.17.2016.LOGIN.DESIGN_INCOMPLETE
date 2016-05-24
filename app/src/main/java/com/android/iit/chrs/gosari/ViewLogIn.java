@@ -1,10 +1,12 @@
 package com.android.iit.chrs.gosari;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -56,6 +58,8 @@ public class ViewLogIn extends Activity {
 
     Button btnSignUp;
 
+    ConnectionDetector cd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +67,7 @@ public class ViewLogIn extends Activity {
         setContentView(R.layout.activity_view_log_in);
         db=new DbHelper(this);
 
+        cd=new ConnectionDetector(getApplicationContext());
 
         btnSignUp=(Button) findViewById(R.id.btnSignUp);
         inMobile = (EditText) findViewById(R.id.inMobile);
@@ -102,8 +107,17 @@ public class ViewLogIn extends Activity {
                             message = account.getLogin_mobile() + account.getLogin_pass();
                             Log.e("OUTPUT DATABASE:", message);
                         }
-                        ViewMainActivity();
-                    } else {
+
+                         if(cd.isConnectingToInternet()) {
+                             ViewMainActivity();
+                         }
+                         else{
+                             ShowAlertNoInternet();
+                         }
+                    }
+
+
+                     else {
                         inMobile.setText("");
                         inPassword.setText("");
                         Toast.makeText(getApplicationContext(), "No such account exists!", Toast.LENGTH_SHORT).show();
@@ -118,7 +132,14 @@ public class ViewLogIn extends Activity {
        btnSignUp.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               ViewSignUp();
+
+               if(cd.isConnectingToInternet()) {
+
+                   ViewSignUp();
+               }
+               else {
+                   ShowAlertNoInternet();
+               }
            }
        });
     }
@@ -193,6 +214,31 @@ public class ViewLogIn extends Activity {
      Intent viewSignUp = new Intent(getApplicationContext(),ViewSignUp.class);
 
         startActivity(viewSignUp);
+
+    }
+
+
+    public void minimizeApp() {
+        Intent startMain = new Intent(Intent.ACTION_MAIN);
+        startMain.addCategory(Intent.CATEGORY_HOME);
+        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startMain);
+    }
+
+
+    public void ShowAlertNoInternet(){
+        AlertDialog.Builder alertdialogbuilder=new AlertDialog.Builder(this);
+        alertdialogbuilder.setTitle("Alert!");
+        alertdialogbuilder.setMessage("Please check if your connected to the internet?");
+        alertdialogbuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                minimizeApp();
+
+            }
+        });
+        AlertDialog alertDialog=alertdialogbuilder.create();
+        alertDialog.show();
 
     }
 
