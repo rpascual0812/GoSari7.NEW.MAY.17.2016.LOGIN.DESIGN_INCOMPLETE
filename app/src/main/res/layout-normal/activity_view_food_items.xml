@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:queryHint="Search..."
-        android:clickable="true"
+        android:showAsAction="ifRoom|collapseActionView"
          >
     </SearchView>
     </android.support.v7.widget.CardView>

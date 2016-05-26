@@ -331,7 +331,7 @@ public class ViewCart extends AppCompatActivity {
         });
 
 
-        alertdialogbuiler.setNeutralButton("Set Delivery Time and Date", new DialogInterface.OnClickListener() {
+        alertdialogbuiler.setNeutralButton("SET ANOTHER DATE FOR DELIVERY", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 

@@ -86,7 +86,7 @@ public class ViewFoodItems extends AppCompatActivity {
 
 
 
-       new AsyncTaskFoodItem(ViewFoodItems.this).execute();
+        new AsyncTaskFoodItem(ViewFoodItems.this).execute();
 
 
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
@@ -126,11 +126,13 @@ public class ViewFoodItems extends AppCompatActivity {
                 ShowCartItem();
             }
         });
-       // sv.onActionViewExpanded();
+
+      //  sv.onActionViewExpanded();
+
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-             adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
 
                 Log.e("ON QUERY SUBMIT:",query);
                 return false;
@@ -244,7 +246,7 @@ public class ViewFoodItems extends AppCompatActivity {
                             Log.e("MESSAGE: ", "PLEASE Enter a valid Count");
 
                         } else {
-                             InserData();
+                            InserData();
                             count = 1;
                             Intent intent = getIntent();
                             finish();
@@ -299,7 +301,7 @@ public class ViewFoodItems extends AppCompatActivity {
 
     public void ShowCartItemCount(){
 
-       // showCartCount=db.getItemCount();
+        // showCartCount=db.getItemCount();
 
         showCartCount=db.getTotalitemCount();
         showCartPrice=db.getTotalPrice();

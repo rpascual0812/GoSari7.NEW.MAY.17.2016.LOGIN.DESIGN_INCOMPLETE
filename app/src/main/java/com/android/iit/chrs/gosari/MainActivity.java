@@ -8,28 +8,32 @@ import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.TransitionDrawable;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
 
     Button btnStart;
 
-    Animation slide_in,pop_in,pop_in2;
+    Animation slide_in,pop_in,pop_in2,scale,slide_out;
 
     ImageView iv_buildings,iv_gosariIcons;
 
     ConnectionDetector cd;
 
+    LinearLayout LinearLayout_main;
 
 
   //  TransitionDrawable transitionDrawable;
@@ -39,18 +43,24 @@ AnimationDrawable anim;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         cd=new ConnectionDetector(getApplicationContext());
-
-
-
+        LinearLayout_main=(LinearLayout)findViewById(R.id.LinearLayout_main);
         iv_buildings=(ImageView)findViewById(R.id.iv_buildings);
         iv_gosariIcons=(ImageView)findViewById(R.id.iv_gosariIcon);
         btnStart=(Button)findViewById(R.id.btnStart);
+
+
+      //  changeBackground();
+
         btnStart.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 if(cd.isConnectingToInternet()) {
                     ViewCategory();
+
                 }
 
                 else {
@@ -59,10 +69,6 @@ AnimationDrawable anim;
             }
         });
         Slide_in();
-       /* Pop_in2();
-        Pop_in();*/
-
-
 
 
     }
@@ -71,11 +77,14 @@ AnimationDrawable anim;
     public void ViewCategory(){
         Intent viewCategory = new Intent(getApplicationContext(),ViewCategory.class);
         startActivity(viewCategory);
+        recreate();
 
     }
 
 
+
     public void Slide_in(){
+
         slide_in=AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_in);
         iv_buildings.startAnimation(slide_in);
 
@@ -126,6 +135,9 @@ AnimationDrawable anim;
                // transitionDrawable.resetTransition();
                anim.start();
 
+             //   SlideBackground();
+
+
             }
 
             @Override
@@ -148,6 +160,53 @@ AnimationDrawable anim;
     }
 
 
+
+  /*  public void Scale(){
+        scale=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.scale);
+        iv_gosariIcons.startAnimation(scale);
+        scale.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                ViewCategory();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+    }
+
+    public void Slide_out(){
+        slide_out=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_out);
+        iv_buildings.startAnimation(slide_out);
+        slide_out.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                Log.e("MESSAGE: ","SHOW NEXT INTENT");
+
+                ViewCategory();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+    }*/
+
+
     public void ShowAlertNoInternet(){
         AlertDialog.Builder alertdialogbuilder=new AlertDialog.Builder(this);
         alertdialogbuilder.setTitle("Alert!");
@@ -165,10 +224,12 @@ AnimationDrawable anim;
     }
 
 
+
     @Override
     public void onBackPressed() {
         moveTaskToBack(true);
     }
+
 
 
     public void minimizeApp() {
@@ -179,5 +240,8 @@ AnimationDrawable anim;
     }
 
 
+/*    public void changeBackground(){
+        LinearLayout_main.animate().translationY(0).translationYBy(120).setDuration(getResources().getInteger(android.R.integer.config_mediumAnimTime));
+    }*/
 
 }

@@ -19,6 +19,7 @@ package com.android.iit.chrs.gosari;
     import android.view.View;
     import android.widget.AdapterView;
     import android.widget.Button;
+    import android.widget.GridView;
     import android.widget.ImageButton;
     import android.widget.ImageView;
     import android.widget.ListView;
@@ -73,7 +74,7 @@ package com.android.iit.chrs.gosari;
 
             new AsyncTaskItem(this).execute();
 
-            ListView listview = (ListView) findViewById(R.id.list);
+            GridView listview = (GridView) findViewById(R.id.list);
 
             adapter = new ItemAdapter(getApplicationContext(), R.layout.row_food, foodList);
 
@@ -89,27 +90,11 @@ package com.android.iit.chrs.gosari;
                     int choice = test;
                     ViewFoodItems.title=foodList.get(position).getCategory();
 
-                    switch (choice) {
-                        case 1:
-                            AsyncTaskFoodItem.url = "http://gosari.ph/api/items/list.php?categories_pk=1&archived=false";
-                            break;
-                        case 2:
-                            AsyncTaskFoodItem.url = "http://gosari.ph/api/items/list.php?categories_pk=2&archived=false";
-                            break;
-                        case 3:
-                            AsyncTaskFoodItem.url = "http://gosari.ph/api/items/list.php?categories_pk=3&archived=false";
-                            break;
-                        case 4:
-                            AsyncTaskFoodItem.url = "http://gosari.ph/api/items/list.php?categories_pk=4&archived=false";
-                            break;
-                        case 5:
-                            AsyncTaskFoodItem.url = "http://gosari.ph/api/items/list.php?categories_pk=5&archived=false";
-                            break;
-                    }
+                            AsyncTaskFoodItem.url = "http://gosari.ph/api/items/list.php?categories_pk="+ test +"&archived=false";
+
                     Toast.makeText(getApplicationContext(), String.valueOf(test), Toast.LENGTH_SHORT).show();
                     Intent ShowFoodItem = new Intent(getApplicationContext(), ViewFoodItems.class);
                     startActivity(ShowFoodItem);
-
 
                 }
             });
