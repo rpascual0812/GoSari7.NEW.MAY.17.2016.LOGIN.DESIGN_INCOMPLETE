@@ -4,12 +4,14 @@ package com.android.iit.chrs.gosari;
  * Created by greg on 5/6/16.
  */
 import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ public class ItemFoodAdapter extends ArrayAdapter<ItemFood> implements Filterabl
     LayoutInflater vi;
     int Resource;
     ViewHolder holder;
+    AnimationDrawable animationDrawable;
 
 
     public ItemFoodAdapter(Context context, int resource, ArrayList<ItemFood> objects) {
@@ -44,6 +47,7 @@ public class ItemFoodAdapter extends ArrayAdapter<ItemFood> implements Filterabl
 
             holder = new ViewHolder();
             v = vi.inflate(Resource, null);
+            holder.ivFoodItems=(ImageView)v.findViewById(R.id.thumbnail_FoodItems);
             holder.tvitems = (TextView) v.findViewById(R.id.tvItem);
             holder.tvprice = (TextView) v.findViewById(R.id.tvPrice_Items);
             holder.tvdelivery_time = (TextView) v.findViewById(R.id.tvDeliveryTime_Items);
@@ -53,6 +57,10 @@ public class ItemFoodAdapter extends ArrayAdapter<ItemFood> implements Filterabl
 
             holder = (ViewHolder) v.getTag();
         }
+       holder.ivFoodItems.setImageResource(R.drawable.moving_loading);
+        animationDrawable=(AnimationDrawable)holder.ivFoodItems.getDrawable();
+        animationDrawable.start();
+
         holder.tvitems.setText("Items: " + FoodList.get(position).getItems());
 
         holder.tvprice.setText("Price: " + FoodList.get(position).getPrice());
@@ -63,6 +71,7 @@ public class ItemFoodAdapter extends ArrayAdapter<ItemFood> implements Filterabl
     }
 
     static class ViewHolder {
+        public ImageView ivFoodItems;
         public TextView tvitems;
         public TextView tvprice;
         public TextView tvdelivery_time;
@@ -123,6 +132,9 @@ public class ItemFoodAdapter extends ArrayAdapter<ItemFood> implements Filterabl
     public long getItemId(int position) {
         return 0;
     }
+
+
+
 
 
 

@@ -115,7 +115,7 @@ AnimationDrawable anim;
         pop_in=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.pop);
        btnStart.startAnimation(pop_in);
 
-      btnStart.setBackgroundResource(R.drawable.change_background_btn);
+        btnStart.setBackgroundResource(R.drawable.change_background_btn);
 
         anim = (AnimationDrawable)
                 btnStart.getBackground();

@@ -6,6 +6,7 @@ package com.android.iit.chrs.gosari;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ public class ItemAdapter extends ArrayAdapter<ItemCategory>{
     int Resource;
     ViewHolder holder;
     Bitmap mIcon11 = null;
+    AnimationDrawable animationDrawable;
 
 
     public ItemAdapter(Context context, int resource, ArrayList<ItemCategory> objects) {
@@ -52,7 +54,8 @@ public class ItemAdapter extends ArrayAdapter<ItemCategory>{
         else {
             holder=(ViewHolder)v.getTag();
         }
-        holder.tvImages.setImageResource(R.drawable.loading_image);
+        holder.tvImages.setImageResource(R.drawable.moving_loading);
+      //  holder.tvImages.setBackgroundResource(R.drawable.loading_background);
         new DownloadImageTask(holder.tvImages).execute(ItemList.get(position).getImage());
         holder.tvCategory.setText(ItemList.get(position).getCategory());
         return v;
@@ -67,9 +70,17 @@ public class ItemAdapter extends ArrayAdapter<ItemCategory>{
 
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
-
         public DownloadImageTask(ImageView bmImage) {
             this.bmImage = bmImage;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Log.e("MESSAGE: ","TURNING IMAGE");
+            bmImage.setImageResource(R.drawable.moving_loading);
+            animationDrawable=(AnimationDrawable)bmImage.getDrawable();
+            animationDrawable.start();
         }
 
         protected Bitmap doInBackground(String... urls) {
@@ -88,7 +99,7 @@ public class ItemAdapter extends ArrayAdapter<ItemCategory>{
 
 
         protected void onPostExecute(Bitmap bitmap) {
-
+            animationDrawable.stop();
             bmImage.setImageBitmap(bitmap);
 
         }

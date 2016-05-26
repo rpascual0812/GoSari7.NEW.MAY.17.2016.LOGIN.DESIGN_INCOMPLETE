@@ -43,7 +43,12 @@
             />
     </LinearLayout>
 
-
+<LinearLayout
+    android:layout_below="@+id/LinearLayoutFood"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:background="@drawable/background_base"
+    >
     <GridView
         android:id="@+id/list"
         android:layout_height="fill_parent"
@@ -57,6 +62,8 @@
         android:layout_below="@+id/LinearLayoutFood"
         >
     </GridView>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
