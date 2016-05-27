@@ -13,18 +13,25 @@
     >
 
 
+
     <Button
         android:id="@+id/btnViewFood"
         android:layout_height="200dp"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:background="@drawable/food_image"
         android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+
         />
     <Button
         android:id="@+id/btnViewNonFood"
         android:layout_height="200dp"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:background="@drawable/nonfood_image"
+        android:layout_marginBottom="50dp"
 
         />
 

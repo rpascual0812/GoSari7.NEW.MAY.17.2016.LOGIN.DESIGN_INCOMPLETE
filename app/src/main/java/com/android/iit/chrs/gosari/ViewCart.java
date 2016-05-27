@@ -310,14 +310,31 @@ public class ViewCart extends AppCompatActivity {
 
     public void ShowDialogChkOut() {
 
-        AlertDialog.Builder alertdialogbuiler = new AlertDialog.Builder(ViewCart.this);
+        final AlertDialog.Builder alertdialogbuiler = new AlertDialog.Builder(ViewCart.this);
 
         alertdialogbuiler.setTitle("DO YOU WANT TO CHECKOUT");
 
         alertdialogbuiler.setMessage("# OF ITEMS: " + String.valueOf(totalitems) + "\n" +
                 "TOTAL PRICE:"+'\u20B1'+" "+String.valueOf(totalprice));
 
-        alertdialogbuiler.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+        alertdialogbuiler.setPositiveButton("SET ANOTHER DATE FOR DELIVERY", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                ShowDialogTimeDate();
+            }
+        });
+
+
+        alertdialogbuiler.setNeutralButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+
+            }
+        });
+
+
+        alertdialogbuiler.setNegativeButton("DELIVER NOW", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Log.e("INSERT: ", "ADDING TO CHKOUT TABLE");
@@ -327,23 +344,6 @@ public class ViewCart extends AppCompatActivity {
                 Log.e("DELETING: ", "ALL ITEMS HAS BEEN DELETED");
                 recreate();
                 Toast.makeText(getApplicationContext(), "Successfully chekcout items", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-        alertdialogbuiler.setNeutralButton("SET ANOTHER DATE FOR DELIVERY", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-                ShowDialogTimeDate();
-            }
-        });
-
-
-        alertdialogbuiler.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
             }
         });
 
