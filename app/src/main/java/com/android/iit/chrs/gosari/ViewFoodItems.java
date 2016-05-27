@@ -1,12 +1,14 @@
 package com.android.iit.chrs.gosari;
 
 import android.annotation.TargetApi;
+import android.app.SearchManager;
 import android.app.Service;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.inputmethod.InputMethodManager;
@@ -16,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -69,17 +72,16 @@ public class ViewFoodItems extends AppCompatActivity {
 
     TextView ShowTotalCount;
 
+    LinearLayout LinearLayoutSearch;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_food_items);
-
         ShowTotalCount=(TextView)findViewById(R.id.tvFoodItems_ShowTotalCount);
-
         sv=(SearchView) findViewById(R.id.searchView1);
-
         db = new DbHelper(this);
-
         this.setTitle(title);
 
         ItemfoodList = new ArrayList<ItemFood>();
@@ -92,6 +94,8 @@ public class ViewFoodItems extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
 
         listitem = (GridView) findViewById(R.id.list_food);
+
+        LinearLayoutSearch=(LinearLayout)findViewById(R.id.LinearLayout_search);
 
         adapter = new ItemFoodAdapter(getApplicationContext(), R.layout.row_food_items, ItemfoodList);
 
@@ -126,9 +130,8 @@ public class ViewFoodItems extends AppCompatActivity {
                 ShowCartItem();
             }
         });
-
-      //  sv.onActionViewExpanded();
-
+        sv.onActionViewExpanded();
+        sv.requestFocus();
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -141,9 +144,12 @@ public class ViewFoodItems extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
 
-                adapter.getFilter().filter(newText);
+               adapter.getFilter().filter(newText);
                 adapter.notifyDataSetChanged();
                 return true;
+
+
+
 
             }
         });

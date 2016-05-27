@@ -3,17 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background_base"
     tools:context="com.android.iit.chrs.gosari.ViewFoodItems">
 
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardPersonal"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
+        android:background="#FFFFFF"
+        android:id="@+id/LinearLayout_search"
+
         >
+
     <SearchView
         android:id="@+id/searchView1"
         android:layout_width="fill_parent"
@@ -21,14 +22,16 @@
         android:layout_alignParentTop="true"
         android:queryHint="Search..."
         android:showAsAction="ifRoom|collapseActionView"
-         >
+
+        >
     </SearchView>
-    </android.support.v7.widget.CardView>
+    </LinearLayout>
+
 
        <LinearLayout
            android:layout_width="fill_parent"
            android:layout_height="wrap_content"
-           android:layout_below="@+id/cardPersonal"
+           android:layout_below="@+id/LinearLayout_search"
            android:orientation="horizontal"
            android:background="@color/colorPrimaryDark"
            android:paddingLeft="10dp"
