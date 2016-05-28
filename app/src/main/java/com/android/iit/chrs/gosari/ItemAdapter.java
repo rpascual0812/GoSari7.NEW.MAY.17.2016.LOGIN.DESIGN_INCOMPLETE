@@ -3,6 +3,7 @@ package com.android.iit.chrs.gosari;
 /**
  * Created by greg on 5/5/16.
  */
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,8 +17,25 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.lang.reflect.Array;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Map;
+import java.util.WeakHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by greg on 4/23/16.
@@ -28,7 +46,10 @@ public class ItemAdapter extends ArrayAdapter<ItemCategory>{
     int Resource;
     ViewHolder holder;
     Bitmap mIcon11 = null;
-    AnimationDrawable animationDrawable;
+
+
+
+
 
 
     public ItemAdapter(Context context, int resource, ArrayList<ItemCategory> objects) {
@@ -54,9 +75,10 @@ public class ItemAdapter extends ArrayAdapter<ItemCategory>{
         else {
             holder=(ViewHolder)v.getTag();
         }
-      // holder.tvImages.setImageResource(R.drawable.loading_first);
-      //  holder.tvImages.setBackgroundResource(R.drawable.loading_background);
-        new DownloadImageTask(holder.tvImages).execute(ItemList.get(position).getImage());
+        holder.tvImages.setImageResource(R.drawable.moving_loading);
+        String url=ItemList.get(position).getImage();
+        Log.e("WEBSITE: ","http://www.gosari.ph/"+url);
+        Picasso.with(getContext()).load("http://www.gosari.ph/"+url).into(holder.tvImages);
         holder.tvCategory.setText(ItemList.get(position).getCategory());
         return v;
     }
@@ -67,46 +89,5 @@ public class ItemAdapter extends ArrayAdapter<ItemCategory>{
         public ImageView tvImages;
 
     }
-
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
-        public DownloadImageTask(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            Log.e("MESSAGE: ","TURNING IMAGE");
-            bmImage.setImageResource(R.drawable.moving_loading);
-            animationDrawable=(AnimationDrawable)bmImage.getDrawable();
-            animationDrawable.start();
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-
-            try {
-                InputStream in = new java.net.URL("http://www.gosari.ph/"+urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-                Log.e("WEBSITE:",in.toString());
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-
-        protected void onPostExecute(Bitmap bitmap) {
-        animationDrawable.stop();
-            bmImage.setImageBitmap(bitmap);
-
-        }
-
-
-    }
-
-
 
     }
