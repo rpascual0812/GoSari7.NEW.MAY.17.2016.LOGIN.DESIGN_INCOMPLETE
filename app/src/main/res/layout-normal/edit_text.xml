@@ -12,10 +12,12 @@
     >
     <Button
         android:id="@+id/btnSub"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/round_corner_btn"
         android:text="-"
-        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
         />
     <EditText
         android:id="@+id/etCart"
@@ -28,10 +30,13 @@
 
     <Button
         android:id="@+id/btnAdd"
-        android:layout_height="50dp"
-        android:layout_width="50dp"
-        android:gravity="center"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:text="+"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/round_corner_btn_green"
+        android:textSize="20sp"
+
         />
     </LinearLayout>
 

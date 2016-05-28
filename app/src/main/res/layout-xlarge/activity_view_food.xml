@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="#00bfff"
     android:gravity="center"
-    android:background="@drawable/dark_blue_background"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     tools:context="com.android.iit.chrs.gosari.ViewFood">
 
     <ImageView
-        android:id="@+id/tvFoodCategory"
-        android:src="@drawable/logo_new"
+        android:id="@+id/tvFoodCateg"
+        android:src="@drawable/roof"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_gravity="center"
-        android:layout_marginBottom="5dp"
-        android:paddingTop="10dp"
+        android:scaleType="fitXY"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
 
         />
 
     <LinearLayout
+        android:layout_below="@+id/tvFoodCateg"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
         android:orientation="vertical"
@@ -29,6 +31,7 @@
         android:paddingTop="10dp"
         android:paddingLeft="10dp"
         android:paddingBottom="10dp"
+        android:id="@+id/LinearLayoutFood"
         >
 
         <TextView
@@ -43,36 +46,48 @@
     </LinearLayout>
 
     <LinearLayout
-
+        android:layout_below="@+id/LinearLayoutFood"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:paddingLeft="80dp"
-        android:paddingRight="80dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:background="@drawable/background_base">
 
-
-        <ListView
+        <GridView
             android:id="@+id/list"
             android:layout_height="fill_parent"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             tools:listitem="@layout/row_food"
-            android:layout_weight="1.0"
-            android:divider="#00000000"
-            android:dividerHeight="10dp"
+            android:stretchMode="columnWidth"
+            android:gravity="center"
+            android:numColumns="auto_fit"
+            android:horizontalSpacing="3dp"
+            android:verticalSpacing="3dp"
+            android:layout_below="@+id/LinearLayoutFood"
             >
 
-        </ListView>
+        </GridView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:gravity="bottom"
+        >
 
         <ImageButton
-            android:layout_width="90dp"
-            android:layout_height="90dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@drawable/ic_shoppingcartwhite"
             android:background="@drawable/circle"
             android:id="@+id/imgbtnViewCart"
             android:layout_gravity="bottom|right"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="30dp"/>
 
 
     </LinearLayout>
 
-</LinearLayout>
+
+</RelativeLayout>

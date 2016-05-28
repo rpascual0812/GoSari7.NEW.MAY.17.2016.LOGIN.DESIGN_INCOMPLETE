@@ -8,13 +8,17 @@
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
         android:gravity="center"
+
         >
 
     <Button
         android:id="@+id/btnSub2"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:text="-"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:background="@drawable/round_corner_btn"
         />
     <EditText
         android:id="@+id/etCart2"
@@ -26,9 +30,13 @@
 
     <Button
         android:id="@+id/btnAdd2"
-        android:layout_height="50dp"
-        android:layout_width="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:text="+"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/round_corner_btn_green"
+        android:textSize="20sp"
+
         />
 
 </LinearLayout>
