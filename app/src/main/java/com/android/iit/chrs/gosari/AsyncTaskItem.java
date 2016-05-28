@@ -58,8 +58,6 @@ public class AsyncTaskItem extends AsyncTask<String, String, JSONObject> {
 
                 dialog.dismiss();
                 ViewFood.adapter.notifyDataSetChanged();
-
-
         try {
 
             catergories = json.getJSONArray("result");

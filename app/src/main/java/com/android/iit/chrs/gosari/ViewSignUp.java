@@ -89,7 +89,8 @@ public class ViewSignUp extends Activity {
                 Log.e("LENGTH:",String.valueOf(length));
 
 
-                if(!checkPassWordAndConfirmPassword(in_pass,in_repeatPass,in_name,in_mobile,in_email,in_location)|length<11)
+                if(!checkPassWordAndConfirmPassword(in_pass,in_repeatPass)|length<11|in_name.equals("")|in_email.equals("")
+                        |in_location.equals(""))
                 {
                     //ClearFields();
                     Toast.makeText(getApplicationContext(),"Invalid Details!",Toast.LENGTH_SHORT).show();
@@ -102,7 +103,7 @@ public class ViewSignUp extends Activity {
                     Log.e("MESSAGE:","REGISTER SUCCESS");
                     ClearFields();
 
-                    HttpGetLogin(in_mobile, in_name, in_pass, in_location, in_email);
+                HttpGetLogin(in_mobile, in_name, in_pass, in_location, in_email);
                     ClearFields();
                     if(checkifRegistered==false){
 
@@ -179,10 +180,10 @@ public class ViewSignUp extends Activity {
     }
 
 
-    public boolean checkPassWordAndConfirmPassword(String password,String confirmPassword,String name,String mobile,String email,String location)
+    public boolean checkPassWordAndConfirmPassword(String password,String confirmPassword)
     {
         boolean pstatus = false;
-        if (confirmPassword != null && password != null&&name!=null&&mobile!=null&&email!=null&&location!=null)
+        if (confirmPassword != null && password != null)
         {
             if (password.equals(confirmPassword))
             {
