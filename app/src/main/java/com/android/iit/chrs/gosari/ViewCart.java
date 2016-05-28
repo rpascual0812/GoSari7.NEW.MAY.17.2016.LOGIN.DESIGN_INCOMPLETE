@@ -152,7 +152,16 @@ public class ViewCart extends AppCompatActivity {
         chkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ShowDialogChkOut();
+                int getItemCount=db.getItemCount();
+
+                if(getItemCount<1){
+                    Log.e("MESSAGE: ","NO ITEMS IN CART");
+                    AlertNoItems();
+
+                }
+                else {
+                    ShowDialogChkOut();
+                }
             }
         });
 
@@ -312,7 +321,7 @@ public class ViewCart extends AppCompatActivity {
 
         final AlertDialog.Builder alertdialogbuiler = new AlertDialog.Builder(ViewCart.this);
 
-        alertdialogbuiler.setTitle("DO YOU WANT TO CHECKOUT");
+        alertdialogbuiler.setTitle("DO YOU WANT TO CHECKOUT?");
 
         alertdialogbuiler.setMessage("# OF ITEMS: " + String.valueOf(totalitems) + "\n" +
                 "TOTAL PRICE:"+'\u20B1'+" "+String.valueOf(totalprice));
@@ -530,6 +539,23 @@ public class ViewCart extends AppCompatActivity {
 
     public static void restart(){
         activity.recreate();
+    }
+
+
+    public void AlertNoItems(){
+        AlertDialog.Builder alerDialogBuilder=new AlertDialog.Builder(this);
+        alerDialogBuilder.setTitle("Warning!");
+        alerDialogBuilder.setMessage("No item(s) in your cart.");
+        alerDialogBuilder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+
+        AlertDialog alertDialog= alerDialogBuilder.create();
+        alertDialog.show();
+
     }
 
     @Override

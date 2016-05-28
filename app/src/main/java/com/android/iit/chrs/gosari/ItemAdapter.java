@@ -54,7 +54,7 @@ public class ItemAdapter extends ArrayAdapter<ItemCategory>{
         else {
             holder=(ViewHolder)v.getTag();
         }
-        holder.tvImages.setImageResource(R.drawable.moving_loading);
+      // holder.tvImages.setImageResource(R.drawable.loading_first);
       //  holder.tvImages.setBackgroundResource(R.drawable.loading_background);
         new DownloadImageTask(holder.tvImages).execute(ItemList.get(position).getImage());
         holder.tvCategory.setText(ItemList.get(position).getCategory());
@@ -99,7 +99,7 @@ public class ItemAdapter extends ArrayAdapter<ItemCategory>{
 
 
         protected void onPostExecute(Bitmap bitmap) {
-            animationDrawable.stop();
+        animationDrawable.stop();
             bmImage.setImageBitmap(bitmap);
 
         }

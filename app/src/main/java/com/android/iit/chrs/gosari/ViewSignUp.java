@@ -1,12 +1,10 @@
 package com.android.iit.chrs.gosari;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.view.ContextThemeWrapper;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
@@ -25,9 +23,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Objects;
 import android.content.Context;
-import android.widget.ThemedSpinnerAdapter;
 import android.widget.Toast;
 
 public class ViewSignUp extends Activity {
@@ -47,7 +43,7 @@ public class ViewSignUp extends Activity {
 
     TelephonyManager telemamanger;
 
-    String getSimNumber,mobilenumber;
+    String getSimNumber;
 
     ConnectionDetector cd;
 
@@ -226,15 +222,15 @@ public class ViewSignUp extends Activity {
         alertDialogBuilder.setTitle("Alert!");
         alertDialogBuilder.setMessage("Mobile number is already registered.");
 
-        final AlertDialog alertDialog= alertDialogBuilder.create();
-        alertDialog.show();
-
-        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                  alertDialog.dismiss();
+
             }
         });
+
+        final AlertDialog alertDialog= alertDialogBuilder.create();
+        alertDialog.show();
 
     }
 

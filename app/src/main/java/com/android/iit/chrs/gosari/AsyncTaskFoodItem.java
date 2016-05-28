@@ -48,12 +48,12 @@ public class AsyncTaskFoodItem extends AsyncTask<String, String, JSONObject> {
 
 
         ViewFoodItems.adapter.notifyDataSetChanged();
-        dialog.dismiss();
 
+        dialog.dismiss();
 
         try{
            // ViewFoodItems.message=json.getString("msg");
-                    result=json.getJSONArray("result");
+            result=json.getJSONArray("result");
             for(int i=0;i<result.length();i++) {
                 JSONObject r=result.getJSONObject(i);
                 ItemFood itemFood = new ItemFood();
@@ -68,6 +68,7 @@ public class AsyncTaskFoodItem extends AsyncTask<String, String, JSONObject> {
                 ViewFoodItems.ItemfoodList.add(itemFood);
 
             }
+
 
         }
         catch (JSONException e){
