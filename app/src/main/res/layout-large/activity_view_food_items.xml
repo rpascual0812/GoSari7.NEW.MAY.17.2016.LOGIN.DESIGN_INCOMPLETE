@@ -13,6 +13,7 @@
         android:id="@+id/LinearLayout_search"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
+        android:clickable="true"
 
         >
         <SearchView

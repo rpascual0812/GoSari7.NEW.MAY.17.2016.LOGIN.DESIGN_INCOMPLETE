@@ -1,14 +1,12 @@
 package com.android.iit.chrs.gosari;
 
-import android.annotation.TargetApi;
-import android.app.SearchManager;
+
 import android.app.Service;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.inputmethod.InputMethodManager;
@@ -27,6 +25,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import android.widget.SearchView.OnQueryTextListener;
 
 
 
@@ -37,7 +36,6 @@ public class ViewFoodItems extends AppCompatActivity {
     static ItemFoodAdapter adapter;
 
     public static JSONArray result;
-
 
     public static String message;
 
@@ -130,9 +128,16 @@ public class ViewFoodItems extends AppCompatActivity {
                 ShowCartItem();
             }
         });
-        sv.onActionViewExpanded();
-        sv.requestFocus();
-        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+        LinearLayoutSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("MESSAGE: ","CLICKED");
+                sv.onActionViewExpanded();
+            }
+        });
+
+        sv.setOnQueryTextListener(new OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 adapter.notifyDataSetChanged();

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
         android:id="@+id/LinearLayout_search"
-
+        android:clickable="true"
         >
 
     <SearchView
