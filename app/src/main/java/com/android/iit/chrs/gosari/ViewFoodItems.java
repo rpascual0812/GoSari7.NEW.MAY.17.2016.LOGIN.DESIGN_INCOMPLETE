@@ -152,10 +152,6 @@ public class ViewFoodItems extends AppCompatActivity {
                adapter.getFilter().filter(newText);
                 adapter.notifyDataSetChanged();
                 return true;
-
-
-
-
             }
         });
 
