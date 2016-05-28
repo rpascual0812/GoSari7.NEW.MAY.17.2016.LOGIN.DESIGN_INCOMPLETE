@@ -28,7 +28,7 @@ public class AsyncTaskFoodItem extends AsyncTask<String, String, JSONObject> {
     @Override
     protected void onPreExecute() {
         dialog.setTitle("GoSari");
-        dialog.setMessage("Loading items , please wait...");
+        dialog.setMessage("Loading items , please wait.");
         dialog.show();
     }
 

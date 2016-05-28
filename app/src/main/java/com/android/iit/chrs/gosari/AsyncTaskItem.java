@@ -4,18 +4,11 @@ package com.android.iit.chrs.gosari;
  * Created by greg on 5/5/16.
  */
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.ThemedSpinnerAdapter;
-import android.util.Log;
-import android.widget.Toast;
-
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 public class AsyncTaskItem extends AsyncTask<String, String, JSONObject> {
 
@@ -25,8 +18,7 @@ public class AsyncTaskItem extends AsyncTask<String, String, JSONObject> {
 
     private ProgressDialog dialog;
 
-    AlertDialog alertDialog;
-
+    JSONArray catergories;
 
 
     public AsyncTaskItem(ViewFood activity) {
@@ -37,7 +29,7 @@ public class AsyncTaskItem extends AsyncTask<String, String, JSONObject> {
     @Override
     protected void onPreExecute() {
         dialog.setTitle("GoSari");
-        dialog.setMessage("Loading items, please wait...");
+        dialog.setMessage("Loading items, please wait.");
         dialog.show();
     }
 
@@ -70,10 +62,9 @@ public class AsyncTaskItem extends AsyncTask<String, String, JSONObject> {
 
         try {
 
-            ViewFood.message = json.getString("msg");
-            ViewFood.catergories = json.getJSONArray("result");
-            for (int i = 0; i < ViewFood.catergories.length(); i++) {
-                JSONObject c = ViewFood.catergories.getJSONObject(i);
+            catergories = json.getJSONArray("result");
+            for (int i = 0; i < catergories.length(); i++) {
+                JSONObject c = catergories.getJSONObject(i);
                 ItemCategory foods = new ItemCategory();
                 foods.setPk(c.getString("pk"));
                 foods.setCategory(c.getString("category"));

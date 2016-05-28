@@ -2,43 +2,26 @@ package com.android.iit.chrs.gosari;
 
 
     import android.app.Activity;
-    import android.content.DialogInterface;
     import android.content.Intent;
-    import android.graphics.drawable.ColorDrawable;
-    import android.net.Uri;
-    import android.support.design.widget.FloatingActionButton;
     import android.support.v4.app.NavUtils;
-    import android.support.v7.app.ActionBarActivity;
-    import android.support.v7.app.AlertDialog;
     import android.support.v7.app.AppCompatActivity;
     import android.os.Bundle;
-    import android.support.v7.widget.Toolbar;
     import android.util.Log;
-    import android.view.Menu;
     import android.view.MenuItem;
     import android.view.View;
     import android.widget.AdapterView;
-    import android.widget.Button;
     import android.widget.GridView;
     import android.widget.ImageButton;
-    import android.widget.ImageView;
-    import android.widget.ListView;
     import android.widget.TextView;
     import android.widget.Toast;
-
-    import org.json.JSONArray;
-
     import java.util.ArrayList;
 
     public class ViewFood extends AppCompatActivity {
 
+
         public static ArrayList<ItemCategory> foodList;
 
         static ItemAdapter adapter;
-
-        public static JSONArray catergories = null;
-
-        public static String message;
 
         ImageButton imgbtnViewCart;
 
@@ -68,9 +51,8 @@ package com.android.iit.chrs.gosari;
 
             AsyncTaskItem.UrlChoice = 1;
 
-            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
 
-            foodList = new ArrayList<ItemCategory>();
+           foodList = new ArrayList<ItemCategory>();
 
             new AsyncTaskItem(this).execute();
 
@@ -87,7 +69,6 @@ package com.android.iit.chrs.gosari;
 
 
                     int test = Integer.parseInt(foodList.get(position).getPk());
-                    int choice = test;
                     ViewFoodItems.title=foodList.get(position).getCategory();
 
                             AsyncTaskFoodItem.url = "http://gosari.ph/api/items/list.php?categories_pk="+ test +"&archived=false";
