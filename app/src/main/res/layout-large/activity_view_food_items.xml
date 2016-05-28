@@ -84,8 +84,8 @@
 
         <ImageButton
             android:layout_marginRight="10dp"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:src="@drawable/ic_shoppingcartwhite"
             android:background="@drawable/circle"
             android:id="@+id/imgbtnViewCart2"
