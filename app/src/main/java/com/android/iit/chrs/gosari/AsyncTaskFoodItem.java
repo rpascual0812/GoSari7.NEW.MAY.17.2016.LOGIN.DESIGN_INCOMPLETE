@@ -3,13 +3,13 @@ package com.android.iit.chrs.gosari;
 /**
  * Created by greg on 5/6/16.
  */
-import android.app.Activity;
+
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
-
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import android.content.Context;
+
 
 
 public class AsyncTaskFoodItem extends AsyncTask<String, String, JSONObject> {
@@ -17,9 +17,9 @@ public class AsyncTaskFoodItem extends AsyncTask<String, String, JSONObject> {
 
     public static String url=null;
 
-    public static boolean test;
-
     private ProgressDialog dialog;
+
+    JSONArray result;
 
     public AsyncTaskFoodItem(ViewFoodItems activity) {
         dialog = new ProgressDialog(activity);
@@ -52,10 +52,10 @@ public class AsyncTaskFoodItem extends AsyncTask<String, String, JSONObject> {
 
 
         try{
-            ViewFoodItems.message=json.getString("msg");
-            ViewFoodItems.result=json.getJSONArray("result");
-            for(int i=0;i<ViewFoodItems.result.length();i++) {
-                JSONObject r=ViewFoodItems.result.getJSONObject(i);
+           // ViewFoodItems.message=json.getString("msg");
+                    result=json.getJSONArray("result");
+            for(int i=0;i<result.length();i++) {
+                JSONObject r=result.getJSONObject(i);
                 ItemFood itemFood = new ItemFood();
                 itemFood.setPk(r.getString("pk"));
                 itemFood.setPk_categories(r.getString("categories_pk"));

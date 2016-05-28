@@ -73,7 +73,6 @@ package com.android.iit.chrs.gosari;
 
                             AsyncTaskFoodItem.url = "http://gosari.ph/api/items/list.php?categories_pk="+ test +"&archived=false";
 
-                    Toast.makeText(getApplicationContext(), String.valueOf(test), Toast.LENGTH_SHORT).show();
                     Intent ShowFoodItem = new Intent(getApplicationContext(), ViewFoodItems.class);
                     startActivity(ShowFoodItem);
 

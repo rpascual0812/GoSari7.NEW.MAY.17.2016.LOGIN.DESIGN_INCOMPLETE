@@ -35,9 +35,9 @@ public class ViewFoodItems extends AppCompatActivity {
 
     static ItemFoodAdapter adapter;
 
-    public static JSONArray result;
+   // public static JSONArray result;
 
-    public static String message;
+   // public static String message;
 
     int count = 1, newcount = 0;
 
@@ -85,11 +85,10 @@ public class ViewFoodItems extends AppCompatActivity {
         ItemfoodList = new ArrayList<ItemFood>();
 
 
-
         new AsyncTaskFoodItem(ViewFoodItems.this).execute();
 
 
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
 
         listitem = (GridView) findViewById(R.id.list_food);
 
@@ -215,7 +214,7 @@ public class ViewFoodItems extends AppCompatActivity {
         alertDialog.setPositiveButton("CANCEL", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {
-                Toast.makeText(getApplicationContext(), "YOU CLICKED CANCEL", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getApplicationContext(), "YOU CLICKED CANCEL", Toast.LENGTH_SHORT).show();
 
                 dialogInterface.cancel();
             }
@@ -229,7 +228,7 @@ public class ViewFoodItems extends AppCompatActivity {
 
                 boolean verify = db.verifyItem(items);
 
-                Toast.makeText(getApplicationContext(), items, Toast.LENGTH_SHORT).show();
+
 
                 if (verify == true) {
                     CartAlert();
@@ -288,6 +287,7 @@ public class ViewFoodItems extends AppCompatActivity {
         totalprice = Integer.parseInt(price) * Integer.parseInt(getCount);
         Log.d("Inserting to Databse:", "Cart Items");
         db.addItem(new ItemCart(pk, pk_categories, items, description, totalprice, newcount, delivery_time, date));
+        Toast.makeText(getApplicationContext(), items+" is added to your cart.", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -295,7 +295,7 @@ public class ViewFoodItems extends AppCompatActivity {
     public void CartAlert() {
         AlertDialog.Builder alertdialogbuilder = new AlertDialog.Builder(this);
         alertdialogbuilder.setTitle("Alert");
-        alertdialogbuilder.setMessage(items + " is already in your cart. Please check your cart.");
+        alertdialogbuilder.setMessage(items + " is already in your cart. Please check your cart to update the item.");
         alertdialogbuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -308,7 +308,6 @@ public class ViewFoodItems extends AppCompatActivity {
 
     public void ShowCartItemCount(){
 
-        // showCartCount=db.getItemCount();
 
         showCartCount=db.getTotalitemCount();
         showCartPrice=db.getTotalPrice();
