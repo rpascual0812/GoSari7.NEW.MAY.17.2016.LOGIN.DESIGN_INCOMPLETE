@@ -39,13 +39,13 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String[] COLUMNS = {KEY_ID, ITEM_PK, CATEGORY_PK, ITEM_CART, ITEM_DESC, ITEM_PRICE, ITEM_COUNT, ITEM_DELIVERY_TIME};
 
 
-    public DbHelper (Context context) {
+    public DbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
 
     @Override
-    public void onCreate (SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase db) {
         // SQL statement to create book table
         String CREATE_CART_TABLE = "CREATE TABLE carts ( " +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -60,18 +60,18 @@ public class DbHelper extends SQLiteOpenHelper {
         // create books table
         db.execSQL(CREATE_CART_TABLE);
 
-        String CREATE_CHKOUT_TABLE="CREATE TABLE chkout ("+
-                "chkout_id INTEGER PRIMARY KEY AUTOINCREMENT,"+
-                "chkout_item_pk TEXT,"+
-                "chkout_categ_pk TEXT,"+
-                "chkout_item TEXT,"+
-                "chkout_price FLOAT,"+
-                "chkout_count INTEGER,"+
+        String CREATE_CHKOUT_TABLE = "CREATE TABLE chkout (" +
+                "chkout_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "chkout_item_pk TEXT," +
+                "chkout_categ_pk TEXT," +
+                "chkout_item TEXT," +
+                "chkout_price FLOAT," +
+                "chkout_count INTEGER," +
                 "chkout_date TEXT)";
         db.execSQL(CREATE_CHKOUT_TABLE);
 
-        String CREATE_ACCOUNT_TABLE="CREATE TABLE account ("+
-                "account_mobile TEXT,"+
+        String CREATE_ACCOUNT_TABLE = "CREATE TABLE account (" +
+                "account_mobile TEXT," +
                 "account_password TEXT)";
 
         db.execSQL(CREATE_ACCOUNT_TABLE);
@@ -80,7 +80,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private SQLiteDatabase db;
 
     @Override
-    public void onUpgrade (SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older books table if existed
         db.execSQL("DROP TABLE IF EXISTS carts");
         db.execSQL("DROP TABLE IF EXISTS chkout");
@@ -88,7 +88,7 @@ public class DbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addItem (ItemCart itemCart) {
+    public void addItem(ItemCart itemCart) {
         //for logging
         Log.d("addBook", toString());
 
@@ -104,7 +104,7 @@ public class DbHelper extends SQLiteOpenHelper {
         contentValues.put(ITEM_PRICE, itemCart.getCartPrice());
         contentValues.put(ITEM_COUNT, itemCart.getCartCount());
         contentValues.put(ITEM_DELIVERY_TIME, itemCart.getCartDeliveryTime());
-        contentValues.put(ITEM_DELIVERY_DATE,itemCart.getCartDate());
+        contentValues.put(ITEM_DELIVERY_DATE, itemCart.getCartDate());
         // 3. insert
         db.insert(TABLE_CART, // table
                 null, //nullColumnHack
@@ -114,7 +114,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public ArrayList<ItemCart> getAllItem () {
+    public ArrayList<ItemCart> getAllItem() {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<ItemCart> listItems = new ArrayList<ItemCart>();
 
@@ -142,7 +142,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
                 itemCart.CartDeliveryTime = cursor.getString(cursor.getColumnIndex(ITEM_DELIVERY_TIME));
 
-                itemCart.CartDate=cursor.getString(cursor.getColumnIndex(ITEM_DELIVERY_DATE));
+                itemCart.CartDate = cursor.getString(cursor.getColumnIndex(ITEM_DELIVERY_DATE));
 
 
                 listItems.add(itemCart);
@@ -154,64 +154,64 @@ public class DbHelper extends SQLiteOpenHelper {
         return listItems;
     }
 
-    public int getItemCount () {
+    public int getItemCount() {
 
-        SQLiteDatabase db=this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
 
-        String getItemCount="SELECT COUNT (item_cart) FROM "+TABLE_CART;
-        Cursor c=db.rawQuery(getItemCount,null);
+        String getItemCount = "SELECT COUNT (item_cart) FROM " + TABLE_CART;
+        Cursor c = db.rawQuery(getItemCount, null);
         c.moveToFirst();
-        int count =c.getInt(0);
+        int count = c.getInt(0);
         c.close();
         return count;
     }
 
     public int getTotalPrice() {
-        SQLiteDatabase db=this.getReadableDatabase();
-        String getTotalPrice="SELECT SUM (item_price) FROM "+TABLE_CART;
-        Cursor c=db.rawQuery(getTotalPrice,null);
-        if(c.moveToFirst()){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String getTotalPrice = "SELECT SUM (item_price) FROM " + TABLE_CART;
+        Cursor c = db.rawQuery(getTotalPrice, null);
+        if (c.moveToFirst()) {
             return c.getInt(0);
         }
         c.close();
-        return  0;
+        return 0;
     }
 
-    public boolean verifyItem(String item){
-        db=this.getReadableDatabase();
-        String query="SELECT * FROM "+TABLE_CART+" WHERE item_cart = ? ";
-        Cursor c=db.rawQuery(query,new String[]{item});
+    public boolean verifyItem(String item) {
+        db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_CART + " WHERE item_cart = ? ";
+        Cursor c = db.rawQuery(query, new String[]{item});
 
-        boolean verifyItem=false;
-        if(c.moveToFirst()){
-            verifyItem=true;
-            while (c.moveToNext());
+        boolean verifyItem = false;
+        if (c.moveToFirst()) {
+            verifyItem = true;
+            while (c.moveToNext()) ;
 
         }
 
         c.close();
         db.close();
-        return  verifyItem;
+        return verifyItem;
     }
 
-    public void updateDateTime(String date){
-        db=this.getWritableDatabase();
-        String query=("UPDATE carts SET item_deliverytime = '"+date+"'");
+    public void updateDateTime(String date) {
+        db = this.getWritableDatabase();
+        String query = ("UPDATE carts SET item_deliverytime = '" + date + "'");
         db.execSQL(query);
         db.close();
 
     }
 
-    public void deletItem(String item){
+    public void deletItem(String item) {
 
-        db=this.getWritableDatabase();
+        db = this.getWritableDatabase();
 
-        db.execSQL("DELETE FROM " +  TABLE_CART + " WHERE item_cart='"+item+"'");
+        db.execSQL("DELETE FROM " + TABLE_CART + " WHERE item_cart='" + item + "'");
 
         db.close();
     }
 
-    public void updateItem(String item,float newPrice,int newCount) {
+    public void updateItem(String item, float newPrice, int newCount) {
         db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(ITEM_PRICE, newPrice);
@@ -221,20 +221,20 @@ public class DbHelper extends SQLiteOpenHelper {
 
     }
 
-    public void removeAllItem(){
-        db=this.getWritableDatabase();
-        db.execSQL("DELETE FROM "+TABLE_CART);
+    public void removeAllItem() {
+        db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_CART);
         db.close();
     }
 
-    public void InserToChkout(){
-        db=this.getWritableDatabase();
+    public void InserToChkout() {
+        db = this.getWritableDatabase();
         db.execSQL("INSERT INTO chkout (chkout_item_pk,chkout_categ_pk,chkout_item,chkout_price,chkout_count,chkout_date) " +
-                "SELECT item_pk,category_pk,item_cart,item_price,item_count,item_date FROM "+TABLE_CART);
+                "SELECT item_pk,category_pk,item_cart,item_price,item_count,item_date FROM " + TABLE_CART);
         db.close();
     }
 
-    public ArrayList<ItemCheckout>getAllItemChkout(){
+    public ArrayList<ItemCheckout> getAllItemChkout() {
 
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<ItemCheckout> listItems = new ArrayList<ItemCheckout>();
@@ -254,7 +254,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
                 itemCheckout.chkout_item = cursor.getString(cursor.getColumnIndex("chkout_item"));
 
-                itemCheckout.chkout_price = cursor.getInt(cursor.getColumnIndex( "chkout_price"));
+                itemCheckout.chkout_price = cursor.getInt(cursor.getColumnIndex("chkout_price"));
 
                 itemCheckout.chkout_count = cursor.getInt(cursor.getColumnIndex("chkout_count"));
 
@@ -271,25 +271,25 @@ public class DbHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean checkfirst(){
-        db=this.getReadableDatabase();
+    public boolean checkfirst() {
+        db = this.getReadableDatabase();
         boolean empty;
-        Cursor c=db.rawQuery("SELECT COUNT(*)FROM account",null);
+        Cursor c = db.rawQuery("SELECT COUNT(*)FROM account", null);
         c.moveToFirst();
-        int count=c.getInt(0);
-        if(count>0){
-            empty=true;
-        }else
-            empty=false;
-        return  empty;
+        int count = c.getInt(0);
+        if (count > 0) {
+            empty = true;
+        } else
+            empty = false;
+        return empty;
     }
 
-    public void addAccount(Account account){
-        db=this.getWritableDatabase();
-        ContentValues values=new ContentValues();
-        values.put("account_mobile",account.getLogin_mobile());
-        values.put("account_password",account.getLogin_pass());
-        db.insert("account",null,values);
+    public void addAccount(Account account) {
+        db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("account_mobile", account.getLogin_mobile());
+        values.put("account_password", account.getLogin_pass());
+        db.insert("account", null, values);
         db.close();
 
     }
@@ -314,30 +314,42 @@ public class DbHelper extends SQLiteOpenHelper {
 
     }
 
-    public void clearchkouthistory(){
-        db=this.getWritableDatabase();
+    public void clearchkouthistory() {
+        db = this.getWritableDatabase();
         db.execSQL("DELETE FROM chkout");
         db.close();
     }
 
-    public void LogOut(){
-        db=this.getWritableDatabase();
+    public void LogOut() {
+        db = this.getWritableDatabase();
         db.execSQL("DELETE FROM account");
         db.close();
     }
 
-    public int getTotalitemCount () {
+    public int getTotalitemCount() {
 
-        SQLiteDatabase db=this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
 
-        String getItemCount="SELECT SUM (item_count) FROM "+TABLE_CART;
-        Cursor c=db.rawQuery(getItemCount,null);
+        String getItemCount = "SELECT SUM (item_count) FROM " + TABLE_CART;
+        Cursor c = db.rawQuery(getItemCount, null);
         c.moveToFirst();
-        int count =c.getInt(0);
+        int count = c.getInt(0);
         c.close();
         return count;
     }
 
+   /* public Cursor getMinDeliveryTime() {
 
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query="SELECT (item_date || item_deliverytime) AS new_delivery FROM carts";
+
+        Cursor c=db.rawQuery(query,null);
+
+        if(c!=null)
+            c.moveToFirst();
+        return c;
+
+    }*/
 }
 

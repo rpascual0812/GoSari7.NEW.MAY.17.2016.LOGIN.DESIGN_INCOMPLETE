@@ -133,26 +133,31 @@ public class ViewFoodItems extends AppCompatActivity {
             public void onClick(View view) {
                 Log.e("MESSAGE: ","CLICKED");
                 sv.onActionViewExpanded();
+               // sv.onActionViewCollapsed();
+
+                sv.setOnQueryTextListener(new OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        adapter.notifyDataSetChanged();
+
+                        Log.e("ON QUERY SUBMIT:",query);
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+
+                        adapter.getFilter().filter(newText);
+                        adapter.notifyDataSetChanged();
+                        return true;
+                    }
+                });
+
             }
         });
 
-        sv.setOnQueryTextListener(new OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                adapter.notifyDataSetChanged();
 
-                Log.e("ON QUERY SUBMIT:",query);
-                return false;
-            }
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-
-               adapter.getFilter().filter(newText);
-                adapter.notifyDataSetChanged();
-                return true;
-            }
-        });
 
         ShowCartItemCount();
 

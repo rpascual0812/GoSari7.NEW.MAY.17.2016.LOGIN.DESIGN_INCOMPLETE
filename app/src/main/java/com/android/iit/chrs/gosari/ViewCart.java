@@ -115,6 +115,10 @@ public class ViewCart extends AppCompatActivity {
 
         }
 
+       // Cursor c=db.getMinDeliveryTime();
+
+       // Log.e("DELIVERY TIME: ",c.toString());
+
 
         tvTotalPrice = (TextView) findViewById(R.id.tvTotalPrice);
         tvNoofItems = (TextView) findViewById(R.id.tvTotalItems);
@@ -465,6 +469,7 @@ public class ViewCart extends AppCompatActivity {
                 HttpGetItems(newDateTimeChkout);
                 db.InserToChkout();
                 db.removeAllItem();
+                Toast.makeText(getApplicationContext(), "Successfully chekcout items", Toast.LENGTH_SHORT).show();
                 finish();
 
             }
