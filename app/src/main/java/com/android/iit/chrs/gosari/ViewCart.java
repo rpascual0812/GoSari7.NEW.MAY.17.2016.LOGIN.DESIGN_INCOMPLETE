@@ -95,12 +95,15 @@ public class ViewCart extends AppCompatActivity {
 
     String mobile;
 
+    String deliverydate;
+
+    ArrayList<ItemCheckout>checkoutArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_cart);
-
+        checkoutArrayList=new ArrayList<ItemCheckout>();
         db = new DbHelper(this);
 
         activity=this;
@@ -328,6 +331,7 @@ public class ViewCart extends AppCompatActivity {
         alertdialogbuiler.setTitle("DO YOU WANT TO CHECKOUT?");
 
         alertdialogbuiler.setMessage("# OF ITEMS: " + String.valueOf(totalitems) + "\n" +
+
                 "TOTAL PRICE:"+'\u20B1'+" "+String.valueOf(totalprice));
 
         alertdialogbuiler.setPositiveButton("SET ANOTHER DATE FOR DELIVERY", new DialogInterface.OnClickListener() {
@@ -352,6 +356,11 @@ public class ViewCart extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 Log.e("INSERT: ", "ADDING TO CHKOUT TABLE");
                 HttpGetItems(itemCarts);
+                //db.updateDateTime();
+                for(ItemCart cart:itemCarts){
+                  deliverydate+=cart.getCartDeliveryTime();
+                    Log.e("DELIVERYTIME: ",deliverydate);
+                }
                 db.InserToChkout();
                 db.removeAllItem();
                 Log.e("DELETING: ", "ALL ITEMS HAS BEEN DELETED");
@@ -409,7 +418,7 @@ public class ViewCart extends AppCompatActivity {
         calendar.add(Calendar.DATE, +1);
         long minDate = calendar.getTimeInMillis();
         dp.setMinDate(minDate);
-        calendar.add(calendar.DATE, +3);
+        calendar.add(calendar.DATE, +2);
         long max = calendar.getTimeInMillis();
         dp.setMaxDate(max);
 
@@ -428,7 +437,6 @@ public class ViewCart extends AppCompatActivity {
 
             @Override
             public void onClick(View arg0) {
-                String am_pm = "";
                 // TODO Auto-generated method stub
 
 
@@ -468,6 +476,11 @@ public class ViewCart extends AppCompatActivity {
                 newDateTimeChkout=db.getAllItem();
                 HttpGetItems(newDateTimeChkout);
                 db.InserToChkout();
+                checkoutArrayList=db.getAllItemChkout();
+                for(ItemCheckout checkout:checkoutArrayList){
+                    deliverydate+=checkout.getChkout_datereceived();
+                    Log.e("DELIVERYTIME: ",deliverydate);
+                }
                 db.removeAllItem();
                 Toast.makeText(getApplicationContext(), "Successfully chekcout items", Toast.LENGTH_SHORT).show();
                 finish();

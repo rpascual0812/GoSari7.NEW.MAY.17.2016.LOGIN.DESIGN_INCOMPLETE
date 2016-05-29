@@ -67,7 +67,8 @@ public class DbHelper extends SQLiteOpenHelper {
                 "chkout_item TEXT," +
                 "chkout_price FLOAT," +
                 "chkout_count INTEGER," +
-                "chkout_date TEXT)";
+                "chkout_date TEXT," +
+                "chkout_datereceived TEXT)";
         db.execSQL(CREATE_CHKOUT_TABLE);
 
         String CREATE_ACCOUNT_TABLE = "CREATE TABLE account (" +
@@ -229,8 +230,8 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public void InserToChkout() {
         db = this.getWritableDatabase();
-        db.execSQL("INSERT INTO chkout (chkout_item_pk,chkout_categ_pk,chkout_item,chkout_price,chkout_count,chkout_date) " +
-                "SELECT item_pk,category_pk,item_cart,item_price,item_count,item_date FROM " + TABLE_CART);
+        db.execSQL("INSERT INTO chkout (chkout_item_pk,chkout_categ_pk,chkout_item,chkout_price,chkout_count,chkout_date,chkout_datereceived) " +
+                "SELECT item_pk,category_pk,item_cart,item_price,item_count,item_date,item_deliverytime FROM " + TABLE_CART);
         db.close();
     }
 
@@ -259,6 +260,8 @@ public class DbHelper extends SQLiteOpenHelper {
                 itemCheckout.chkout_count = cursor.getInt(cursor.getColumnIndex("chkout_count"));
 
                 itemCheckout.chkout_time = cursor.getString(cursor.getColumnIndex("chkout_date"));
+
+                itemCheckout.chkout_datereceived=cursor.getString(cursor.getColumnIndex("chkout_datereceived"));
 
 
                 listItems.add(itemCheckout);
@@ -336,6 +339,13 @@ public class DbHelper extends SQLiteOpenHelper {
         int count = c.getInt(0);
         c.close();
         return count;
+    }
+
+    public void updateDeliveryTime(String date){
+        db = this.getWritableDatabase();
+        String query = ("UPDATE carts SET item_deliverytime = '" + date + "'");
+        db.execSQL(query);
+        db.close();
     }
 
    /* public Cursor getMinDeliveryTime() {

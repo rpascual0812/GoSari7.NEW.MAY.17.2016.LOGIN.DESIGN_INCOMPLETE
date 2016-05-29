@@ -12,12 +12,13 @@ public class ItemCheckout {
     public int chkout_price;
     public int chkout_count;
     public String chkout_time;
+    public String chkout_datereceived;
 
     public ItemCheckout(){
 
     }
 
-    public ItemCheckout (int chkout_id, String chkout_itempk, String chkout_categpk, String chkout_item, int chkout_price, int chkout_count, String chkout_time) {
+    public ItemCheckout (int chkout_id, String chkout_itempk, String chkout_categpk, String chkout_item, int chkout_price, int chkout_count, String chkout_time,String chkout_datereceived) {
         this.chkout_id = chkout_id;
         this.chkout_itempk = chkout_itempk;
         this.chkout_categpk = chkout_categpk;
@@ -25,9 +26,10 @@ public class ItemCheckout {
         this.chkout_price = chkout_price;
         this.chkout_count = chkout_count;
         this.chkout_time = chkout_time;
+        this.chkout_datereceived=chkout_datereceived;
     }
 
-    public ItemCheckout (String chkout_itempk, String chkout_categpk, String chkout_item, int chkout_price, int chkout_count, String chkout_time) {
+    public ItemCheckout (String chkout_itempk, String chkout_categpk, String chkout_item, int chkout_price, int chkout_count, String chkout_time,String chkout_datereceived) {
         super();
         this.chkout_itempk = chkout_itempk;
         this.chkout_categpk = chkout_categpk;
@@ -35,6 +37,7 @@ public class ItemCheckout {
         this.chkout_price = chkout_price;
         this.chkout_count = chkout_count;
         this.chkout_time = chkout_time;
+        this.chkout_datereceived=chkout_datereceived;
     }
 
     public int getChkout_id () {
@@ -91,5 +94,13 @@ public class ItemCheckout {
 
     public void setChkout_time (String chkout_time) {
         this.chkout_time = chkout_time;
+    }
+
+    public String getChkout_datereceived() {
+        return chkout_datereceived;
+    }
+
+    public void setChkout_datereceived(String chkout_datereceived) {
+        this.chkout_datereceived = chkout_datereceived;
     }
 }
