@@ -56,6 +56,7 @@ package com.android.iit.chrs.gosari;
 
             new AsyncTaskItem(this).execute();
 
+
             GridView listview = (GridView) findViewById(R.id.list);
 
             adapter = new ItemAdapter(getApplicationContext(), R.layout.row_food, foodList);

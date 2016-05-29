@@ -10,7 +10,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
+
+
+
 public class AsyncTaskItem extends AsyncTask<String, String, JSONObject> {
+
 
     public static int UrlChoice;
 
@@ -56,8 +60,8 @@ public class AsyncTaskItem extends AsyncTask<String, String, JSONObject> {
     @Override
     protected void onPostExecute(JSONObject json) {
 
-                dialog.dismiss();
-                ViewFood.adapter.notifyDataSetChanged();
+        dialog.dismiss();
+        ViewFood.adapter.notifyDataSetChanged();
         try {
 
             catergories = json.getJSONArray("result");
@@ -65,6 +69,7 @@ public class AsyncTaskItem extends AsyncTask<String, String, JSONObject> {
                 JSONObject c = catergories.getJSONObject(i);
                 ItemCategory foods = new ItemCategory();
                 foods.setPk(c.getString("pk"));
+                foods.setClassifications_pk(c.getString("classifications_pk"));
                 foods.setCategory(c.getString("category"));
                 foods.setImage(c.getString("image"));
                 foods.setArchived(c.getString("archived"));
@@ -82,8 +87,6 @@ public class AsyncTaskItem extends AsyncTask<String, String, JSONObject> {
 
     }
 
-
-
-
-
 }
+
+

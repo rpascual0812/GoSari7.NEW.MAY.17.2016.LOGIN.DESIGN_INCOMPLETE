@@ -2,12 +2,13 @@ package com.android.iit.chrs.gosari;
 
 
 
+
 /**
  * Created by greg on 4/23/16.
  */
 public class ItemCategory {
-
     private String pk;
+    private String classifications_pk;
     private String category;
     private String description;
     private String archived;
@@ -18,9 +19,10 @@ public class ItemCategory {
 
     }
 
-    public ItemCategory(String pk, String category,String archived,String image){
+    public ItemCategory(String pk, String category,String archived,String image,String classifications_pk){
         super();
         this.pk=pk;
+        this.classifications_pk=classifications_pk;
         this.category=category;
         this.archived=archived;
         this.image=image;
@@ -32,6 +34,14 @@ public class ItemCategory {
 
     public void setPk(String pk) {
         this.pk = pk;
+    }
+
+    public String getClassifications_pk() {
+        return classifications_pk;
+    }
+
+    public void setClassifications_pk(String classifications_pk) {
+        this.classifications_pk = classifications_pk;
     }
 
     public String getCategory() {
@@ -65,4 +75,9 @@ public class ItemCategory {
     public void setImage(String image) {
         this.image = image;
     }
+
 }
+
+
+
+  /**/

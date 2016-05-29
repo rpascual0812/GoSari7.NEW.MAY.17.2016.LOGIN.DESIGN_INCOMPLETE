@@ -122,8 +122,9 @@ public class ViewProfile extends Activity {
                     db.clearchkouthistory();
                     db.removeAllItem();
                     Intent viewLogin = new Intent(getApplicationContext(),ViewLogIn.class);
-                    startActivity(viewLogin);
                     finish();
+                    startActivity(viewLogin);
+
 
                 }
                 else{
