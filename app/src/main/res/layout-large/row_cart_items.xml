@@ -81,7 +81,7 @@
             android:text="REMOVE"
             android:textSize="10sp"
             android:elevation="3dp"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/round_corner_btn_blue"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:textColor="#FFFFFF"
