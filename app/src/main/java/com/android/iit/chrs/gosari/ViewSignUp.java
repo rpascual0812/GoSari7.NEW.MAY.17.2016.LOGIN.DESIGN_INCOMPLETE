@@ -97,13 +97,12 @@ public class ViewSignUp extends Activity {
 
 
                     Log.e("MESSAGE:","REGISTER SUCCESS");
-                    ClearFields();
+                   // ClearFields();
 
-                HttpGetLogin(in_mobile, in_name, in_pass, in_location, in_email);
-                    ClearFields();
+                    HttpGetLogin(in_mobile, in_name, in_pass, in_location, in_email);
                     if(checkifRegistered==false){
+                                SignUpSuccess();
 
-                            finish();
                         }
 
                     else {
@@ -266,6 +265,20 @@ public class ViewSignUp extends Activity {
         AlertDialog alertDialog=alertdialogbuilder.create();
         alertDialog.show();
 
+    }
+    public void SignUpSuccess(){
+        AlertDialog.Builder alertdialogbuilder=new AlertDialog.Builder(this);
+        alertdialogbuilder.setTitle("Success");
+        alertdialogbuilder.setMessage("You have successfully created your account thank you.");
+        alertdialogbuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                ClearFields();
+                finish();
+            }
+        });
+        AlertDialog alertDialog=alertdialogbuilder.create();
+        alertDialog.show();
     }
 
 

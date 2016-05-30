@@ -364,8 +364,10 @@ public class ViewCart extends AppCompatActivity {
                 db.InserToChkout();
                 db.removeAllItem();
                 Log.e("DELETING: ", "ALL ITEMS HAS BEEN DELETED");
+                AlerDialogSuccessChkOut();
                 recreate();
-                Toast.makeText(getApplicationContext(), "Successfully chekcout items", Toast.LENGTH_SHORT).show();
+
+                //Toast.makeText(getApplicationContext(), "Successfully chekcout items", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -482,8 +484,9 @@ public class ViewCart extends AppCompatActivity {
                     Log.e("DELIVERYTIME: ",deliverydate);
                 }
                 db.removeAllItem();
-                Toast.makeText(getApplicationContext(), "Successfully chekcout items", Toast.LENGTH_SHORT).show();
-                finish();
+              /*  Toast.makeText(getApplicationContext(), "Successfully chekcout items", Toast.LENGTH_SHORT).show();
+                finish();*/
+                AlerDialogSuccessChkOut();
 
             }
         });
@@ -574,6 +577,21 @@ public class ViewCart extends AppCompatActivity {
         AlertDialog alertDialog= alerDialogBuilder.create();
         alertDialog.show();
 
+    }
+
+
+    public void AlerDialogSuccessChkOut(){
+        AlertDialog.Builder alertdialogBuilder= new AlertDialog.Builder(this);
+        alertdialogBuilder.setTitle("Success");
+        alertdialogBuilder.setMessage("You have successfully check out your item(s).");
+        alertdialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        });
+        AlertDialog alertDialog=alertdialogBuilder.create();
+        alertDialog.show();
     }
 
     @Override
