@@ -65,7 +65,7 @@ public class ItemCartCursorAdapter extends ArrayAdapter<ItemCart> {
     @Override
     public View getView (final int position, View convertView, ViewGroup parent) {
 
-        LayoutInflater layoutInflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+       LayoutInflater layoutInflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view=layoutInflater.inflate(R.layout.row_cart_items,parent,false);
         TextView cart_item=(TextView)view.findViewById(R.id.tvCart_Items);
         TextView cart_description=(TextView)view.findViewById(R.id.tvCart_Description_Items);
@@ -74,7 +74,7 @@ public class ItemCartCursorAdapter extends ArrayAdapter<ItemCart> {
         TextView cart_deliverytime=(TextView)view.findViewById(R.id.tvCart_DeliveryTime);
         Button  btnRemove=(Button)view.findViewById(R.id.btn_remove);
         btnRemove.setFocusable(false);
-        btnRemove.setClickable(false);
+        btnRemove.setClickable(true);
 
         cart_item.setText(items.get(position).CartItems);
         cart_description.setText("Description: " +items.get(position).CartDescription);
@@ -91,13 +91,22 @@ public class ItemCartCursorAdapter extends ArrayAdapter<ItemCart> {
                 db.deletItem(item);
                 items.remove(position);
                 notifyDataSetChanged();
-                ViewCart.restart();
+                //ViewCart.restart();
 
             }
         });
 
         return view;
 
+    }
+
+    static class ShowCart {
+        TextView cart_item;
+        TextView cart_description;
+        TextView cart_price;
+        TextView cart_count;
+        TextView cart_deliverytime;
+        Button btnRemove;
     }
 
 

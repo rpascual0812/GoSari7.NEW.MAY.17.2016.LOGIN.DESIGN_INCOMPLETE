@@ -158,12 +158,7 @@ public class ViewFoodItems extends AppCompatActivity {
             }
         });
 
-
-
-
         ShowCartItemCount();
-
-
     }
 
 

@@ -1,6 +1,7 @@
 package com.android.iit.chrs.gosari;
 
 
+    import android.annotation.SuppressLint;
     import android.app.Activity;
     import android.content.Intent;
     import android.support.v4.app.NavUtils;
@@ -39,6 +40,7 @@ package com.android.iit.chrs.gosari;
              getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             setContentView(R.layout.activity_view_food);
 
+
             ShowCartItems=(TextView)findViewById(R.id.tvFood_ShowTotalCount);
 
             activity=this;
@@ -52,7 +54,7 @@ package com.android.iit.chrs.gosari;
             AsyncTaskItem.UrlChoice = 1;
 
 
-           foodList = new ArrayList<ItemCategory>();
+           foodList = new ArrayList<>();
 
             new AsyncTaskItem(this).execute();
 
@@ -69,10 +71,10 @@ package com.android.iit.chrs.gosari;
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
 
-                    int test = Integer.parseInt(foodList.get(position).getPk());
-                    ViewFoodItems.title=foodList.get(position).getCategory();
+                    //int test = Integer.parseInt(foodList.get(position).getPk());
+                    //ViewFoodItems.title=foodList.get(position).getCategory();
 
-                            AsyncTaskFoodItem.url = "http://gosari.ph/api/items/list.php?categories_pk="+ test +"&archived=false";
+                    //AsyncTaskFoodItem.url = "http://gosari.ph/api/items/list.php?categories_pk="+ test +"&archived=false";
 
                     Intent ShowFoodItem = new Intent(getApplicationContext(), ViewFoodItems.class);
                     startActivity(ShowFoodItem);

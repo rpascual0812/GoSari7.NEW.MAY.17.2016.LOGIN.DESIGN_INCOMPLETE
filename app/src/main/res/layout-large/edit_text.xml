@@ -15,7 +15,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:background="@drawable/round_corner_btn"
-            android:text="-"
+            android:text="@string/minus"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
             />
@@ -32,9 +32,9 @@
             android:id="@+id/btnAdd"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:text="+"
+            android:text="@string/plus"
             android:textColor="#FFFFFF"
-            android:background="@drawable/round_corner_btn_green"
+            android:background="@drawable/side_nav_bar"
             android:textSize="20sp"
 
             />

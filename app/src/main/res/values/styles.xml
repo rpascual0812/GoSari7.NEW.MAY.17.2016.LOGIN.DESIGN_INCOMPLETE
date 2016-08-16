@@ -15,7 +15,7 @@
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-    <item name="windowActionBarOverlay">true</item>>
+    <item name="windowActionBarOverlay">true</item>
     </style>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
     <item name="windowActionBarOverlay">true</item>
@@ -51,6 +51,17 @@
 
     <!--USED FOR ALERT DIALOG-->
     <style name="default_activity_theme" parent="@android:style/Theme.Holo"/>
+
+    <style name="normalText" parent="@android:style/TextAppearance">
+        <item name="android:textSize">19sp</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:textColor">#F000</item>
+    </style>
+
+    <style name="blinkText" parent="normalText">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#FF0000</item>
+    </style>
 
 
 </resources>

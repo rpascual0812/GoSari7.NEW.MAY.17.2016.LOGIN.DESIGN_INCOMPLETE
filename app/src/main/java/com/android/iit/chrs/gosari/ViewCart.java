@@ -1,45 +1,49 @@
 package com.android.iit.chrs.gosari;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.support.annotation.NonNull;
+import android.os.CountDownTimer;
+import android.provider.SyncStateContract;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
-
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.NumberPicker;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.ProtocolException;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -50,10 +54,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Timer;
+import java.util.concurrent.TimeUnit;
+
+import static android.app.Notification.Builder;
 
 public class ViewCart extends AppCompatActivity {
 
@@ -99,14 +105,12 @@ public class ViewCart extends AppCompatActivity {
 
     ArrayList<ItemCheckout>checkoutArrayList;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_cart);
         checkoutArrayList=new ArrayList<ItemCheckout>();
         db = new DbHelper(this);
 
-        activity=this;
 
         accountArrayList=new ArrayList<>();
 
@@ -158,9 +162,8 @@ public class ViewCart extends AppCompatActivity {
 
         chkout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 int getItemCount=db.getItemCount();
-
                 if(getItemCount<1){
                     Log.e("MESSAGE: ","NO ITEMS IN CART");
                     AlertNoItems();
@@ -182,9 +185,8 @@ public class ViewCart extends AppCompatActivity {
                 itemcount = itemCarts.get(position).getCartCount();
 
 
-               // showDialog();
+               showDialog();
                 showUpdateDialog();
-
             }
         });
 
@@ -197,7 +199,7 @@ public class ViewCart extends AppCompatActivity {
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ViewCart.this);
 
 
-        alertDialogBuilder.setTitle("Cart Itmes");
+        alertDialogBuilder.setTitle("Cart Items");
 
         alertDialogBuilder.setMessage("Item: " + item + "\n" + "Count: " + itemcount + "\n" + "Price: " + itemprice);
 
@@ -352,14 +354,17 @@ public class ViewCart extends AppCompatActivity {
 
 
         alertdialogbuiler.setNegativeButton("DELIVER NOW", new DialogInterface.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(getApplicationContext(),Time.class);
+                startActivity(intent);
                 Log.e("INSERT: ", "ADDING TO CHKOUT TABLE");
                 HttpGetItems(itemCarts);
                 //db.updateDateTime();
                 for(ItemCart cart:itemCarts){
-                  deliverydate+=cart.getCartDeliveryTime();
-                    Log.e("DELIVERYTIME: ",deliverydate);
+                 deliverydate=cart.getCartDeliveryTime();
+                   Log.e("DELIVERYTIME: ", deliverydate);
                 }
                 db.InserToChkout();
                 db.removeAllItem();
@@ -601,8 +606,6 @@ public class ViewCart extends AppCompatActivity {
         startActivity(viewFoodCategory);
         this.finish();
     }
-
-
 
 
 }

@@ -101,7 +101,7 @@
                     android:maxLines="1"
                     android:layout_below="@+id/inSignUp_Mobile"
                     android:drawablePadding="5dp"
-                    android:drawableLeft="@drawable/ic_location_hdpi"
+                    android:drawableLeft="@drawable/ic_location_mdpi"
                     />
 
                 <EditText
@@ -116,7 +116,7 @@
                     android:maxLines="1"
                     android:layout_below="@+id/inSignUp_Location"
                     android:drawablePadding="5dp"
-                    android:drawableLeft="@drawable/ic_lock_hdpi"
+                    android:drawableLeft="@drawable/ic_lock_mdpi"
                     />
 
                 <EditText
@@ -131,7 +131,7 @@
                     android:maxLines="1"
                     android:layout_below="@+id/inSignUp_Password"
                     android:drawablePadding="5dp"
-                    android:drawableLeft="@drawable/ic_lock_hdpi"
+                    android:drawableLeft="@drawable/ic_lock_mdpi"
                     />
 
                 <Button

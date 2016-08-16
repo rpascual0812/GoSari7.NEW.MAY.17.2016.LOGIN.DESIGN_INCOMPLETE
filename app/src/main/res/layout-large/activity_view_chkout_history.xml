@@ -15,7 +15,7 @@
         <ListView
             android:layout_marginTop="10dp"
             android:id="@+id/list_chkout"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_width="match_parent"
             android:divider="@null"
             android:dividerHeight="30dp"
@@ -30,7 +30,7 @@
             android:textSize="20sp"
             android:background="@color/colorPrimary"
             android:textColor="#FFFFFF"
-            android:text="CLEAR HISTORY" />
+            android:text="@string/clear_history" />
     </LinearLayout>
 
 </LinearLayout>

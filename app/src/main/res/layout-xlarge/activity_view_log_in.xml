@@ -91,7 +91,7 @@
                         android:inputType="textPassword"
                         android:textColorHint="#000000"
                         android:textColor="#000000"
-                        android:drawableLeft="@drawable/ic_lock_hdpi"
+                        android:drawableLeft="@drawable/ic_lock_mdpi"
                         android:drawablePadding="5dp"
                         android:maxLines="1"
                         />

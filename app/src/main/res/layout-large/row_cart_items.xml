@@ -19,7 +19,7 @@
             android:id="@+id/tvCart_Items"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="Category"
+            android:text="@string/category"
             android:textSize="10sp"
             android:textColor="#000000"
             />
@@ -29,7 +29,7 @@
             android:layout_below="@+id/tvCart_Items"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="Description"
+            android:text="@string/description"
             android:textSize="10sp"
             android:textColor="#000000"
 
@@ -41,7 +41,7 @@
             android:layout_below="@id/tvCart_Description_Items"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="Count:"
+            android:text="@string/count"
             android:textSize="15sp"
             android:textColor="#000000"
             />
@@ -53,7 +53,7 @@
             android:id="@+id/tvCart_Price_Items"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="Price"
+            android:text="@string/price"
             android:textSize="10sp"
             android:textColor="#000000"
             android:gravity="right"
@@ -67,7 +67,7 @@
             android:id="@+id/tvCart_DeliveryTime"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="Delivery Time:"
+            android:text="@string/delivery_time"
             android:textSize="10sp"
             android:textColor="#000000"
             />
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_below="@id/tvCart_DeliveryTime"
-            android:text="REMOVE"
+            android:text="@string/remove"
             android:textSize="10sp"
             android:elevation="3dp"
             android:background="@drawable/round_corner_btn_blue"

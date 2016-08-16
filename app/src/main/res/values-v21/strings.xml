@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cart_0_item_s_php_0">Cart 0 item(s)-PHP 0</string>
+    <string name="name">Name</string>
+    <string name="mobile">Mobile</string>
+    <string name="email">Email</string>
+    <string name="minus1">-</string>
+    <string name="android_version">Android Version</string>
+    <string name="category">Category</string>
+    <string name="price">Price</string>
+    <string name="delivery_time">Delivery Time</string>
+</resources>

@@ -147,11 +147,13 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
                 listItems.add(itemCart);
-            } while (cursor.moveToNext());
+            }
+            while (cursor.moveToNext());
+
         }
 
         cursor.close();
-
+        db.close();
         return listItems;
     }
 
@@ -163,6 +165,7 @@ public class DbHelper extends SQLiteOpenHelper {
         Cursor c = db.rawQuery(getItemCount, null);
         c.moveToFirst();
         int count = c.getInt(0);
+        db.close();
         c.close();
         return count;
     }
@@ -174,6 +177,7 @@ public class DbHelper extends SQLiteOpenHelper {
         if (c.moveToFirst()) {
             return c.getInt(0);
         }
+        db.close();
         c.close();
         return 0;
     }
@@ -267,6 +271,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 listItems.add(itemCheckout);
             } while (cursor.moveToNext());
         }
+        db.close();
 
         cursor.close();
 
@@ -311,6 +316,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 accountArrayList.add(account);
             } while (cursor.moveToNext());
         }
+        db.close();
 
         cursor.close();
         return accountArrayList;
@@ -337,6 +343,7 @@ public class DbHelper extends SQLiteOpenHelper {
         Cursor c = db.rawQuery(getItemCount, null);
         c.moveToFirst();
         int count = c.getInt(0);
+        db.close();
         c.close();
         return count;
     }

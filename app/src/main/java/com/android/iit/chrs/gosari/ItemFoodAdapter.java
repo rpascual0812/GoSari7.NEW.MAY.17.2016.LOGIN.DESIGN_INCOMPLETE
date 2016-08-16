@@ -3,8 +3,13 @@ package com.android.iit.chrs.gosari;
 /**
  * Created by greg on 5/6/16.
  */
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +18,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +44,7 @@ public class ItemFoodAdapter extends ArrayAdapter<ItemFood> implements Filterabl
         orig=objects;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -46,27 +53,26 @@ public class ItemFoodAdapter extends ArrayAdapter<ItemFood> implements Filterabl
         if (v == null) {
 
             holder = new ViewHolder();
-            v = vi.inflate(Resource, null);
+            v = vi.inflate(Resource,parent,false);
             holder.ivFoodItems=(ImageView)v.findViewById(R.id.thumbnail_FoodItems);
             holder.tvitems = (TextView) v.findViewById(R.id.tvItem);
             holder.tvprice = (TextView) v.findViewById(R.id.tvPrice_Items);
             holder.tvdelivery_time = (TextView) v.findViewById(R.id.tvDeliveryTime_Items);
+            //Toast.makeText(getContext(),"New Items Arrived!!",Toast.LENGTH_LONG).show();
             // holder.tvdescription=(TextView)v.findViewById(R.id.tvDescription_Items);
             v.setTag(holder);
         } else {
-
             holder = (ViewHolder) v.getTag();
         }
-       holder.ivFoodItems.setImageResource(R.drawable.moving_loading);
-        animationDrawable=(AnimationDrawable)holder.ivFoodItems.getDrawable();
-        animationDrawable.start();
+        //holder.ivFoodItems.setBackgroundResource(R.drawable.moving_loading);
+        //animationDrawable=(AnimationDrawable)holder.ivFoodItems.getBackground();
+        //animationDrawable.start();
 
         holder.tvitems.setText("Items: " + FoodList.get(position).getItems());
 
         holder.tvprice.setText("Price: " + FoodList.get(position).getPrice());
         //  holder.tvdescription.setText("DESCRIPTION: "+FoodList.get(position).getDescription());
         holder.tvdelivery_time.setText("Delivery Time: " + FoodList.get(position).getDeliverytime());
-
         return v;
     }
 
@@ -132,14 +138,6 @@ public class ItemFoodAdapter extends ArrayAdapter<ItemFood> implements Filterabl
     public long getItemId(int position) {
         return 0;
     }
-
-
-
-
-
-
-
-
 
 }
 

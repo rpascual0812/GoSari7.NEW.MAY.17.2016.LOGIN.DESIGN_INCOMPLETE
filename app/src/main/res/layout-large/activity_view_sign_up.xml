@@ -46,7 +46,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:hint="Name"
+                    android:hint="@string/name"
                     android:textColorHint="#000000"
                     android:textColor="#000000"
                     android:maxLines="1"
@@ -62,7 +62,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:hint="Email"
+                    android:hint="@string/email"
                     android:textColorHint="#000000"
                     android:textColor="#000000"
                     android:maxLines="1"
@@ -79,7 +79,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="phone"
-                    android:hint="Mobile"
+                    android:hint="@string/mobile"
                     android:maxLength="11"
                     android:textColorHint="#000000"
                     android:textColor="#000000"
@@ -95,13 +95,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:hint="Location"
+                    android:hint="@string/location"
                     android:textColorHint="#000000"
                     android:textColor="#000000"
                     android:maxLines="1"
                     android:layout_below="@+id/inSignUp_Mobile"
                     android:drawablePadding="5dp"
-                    android:drawableLeft="@drawable/ic_location_hdpi"
+                    android:drawableLeft="@drawable/ic_location_mdpi"
                     />
 
                 <EditText
@@ -110,13 +110,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:hint="Password"
+                    android:hint="@string/password"
                     android:textColorHint="#000000"
                     android:textColor="#000000"
                     android:maxLines="1"
                     android:layout_below="@+id/inSignUp_Location"
                     android:drawablePadding="5dp"
-                    android:drawableLeft="@drawable/ic_lock_hdpi"
+                    android:drawableLeft="@drawable/ic_lock_mdpi"
                     />
 
                 <EditText
@@ -125,13 +125,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:hint="Repeat Password"
+                    android:hint="@string/repeat_password"
                     android:textColorHint="#000000"
                     android:textColor="#000000"
                     android:maxLines="1"
                     android:layout_below="@+id/inSignUp_Password"
                     android:drawablePadding="5dp"
-                    android:drawableLeft="@drawable/ic_lock_hdpi"
+                    android:drawableLeft="@drawable/ic_lock_mdpi"
                     />
 
                 <Button
@@ -141,7 +141,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#FFFFFF"
-                    android:text="REGISTER"
+                    android:text="@string/register"
                     android:textStyle="bold"
                     android:background="@color/colorPrimary"
                     android:layout_below="@+id/inSignUp_RepeatPassword"/>

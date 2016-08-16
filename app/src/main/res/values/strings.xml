@@ -13,5 +13,44 @@
 
     <string name="Login_btn">LOGIN</string>
     <string name="Signup_btn">SIGN UP</string>
+    <string name="check_out">CHECK OUT</string>
+    <string name="clear_history">CLEAR HISTORY</string>
+    <string name="cart_0_item_s_php_0">Cart 0 item(s)-PHP 0</string>
+    <string name="name">Name :</string>
+    <string name="mobile">Mobile :</string>
+    <string name="logout">LOGOUT</string>
+    <string name="email">Email :</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="change_password">CHANGE PASSWORD</string>
+    <string name="location">Location</string>
+    <string name="password">Password</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="register">REGISTER</string>
+    <string name="colon">:</string>
+    <string name="set">Set</string>
+    <string name="cancel">Cancel</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="plus2">+</string>
+    <string name="category">Category</string>
+    <string name="description">Description</string>
+    <string name="count">Count:</string>
+    <string name="price">Price</string>
+    <string name="delivery_time">Delivery Time:</string>
+    <string name="remove">REMOVE</string>
+    <string name="android_name">Android Name</string>
+    <string name="android_version">Android Version</string>
+    <string name="tanghalian">Tanghalian</string>
+    <string name="add_to_cart">ADD TO CART</string>
+    <string name="_00_00">30:00</string>
+    <string name="youre_item_will_be_coming_after">Youre item will be coming after</string>
+    <string name="_30_00">30:00</string>
+    <string name="go_back_to_category">Go Back to Category</string>
+    <string name="your_items_will_be_delivered_after">Your Items will be delivered after</string>
+    <string name="back_to_the_category">Back to the Category</string>
+    <string name="menu_settings">Settings</string>
+    <string name="items_will_be_delivered_after">Items will be delivered after</string>
 
 </resources>

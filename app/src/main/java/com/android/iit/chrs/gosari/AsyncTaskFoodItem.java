@@ -5,7 +5,12 @@ package com.android.iit.chrs.gosari;
  */
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.database.Cursor;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,7 +20,7 @@ import org.json.JSONObject;
 public class AsyncTaskFoodItem extends AsyncTask<String, String, JSONObject> {
 
 
-    public static String url=null;
+    public static String url="http://gosari.ph/api/items/list.php?categories_pk";
 
     private ProgressDialog dialog;
 
@@ -66,10 +71,7 @@ public class AsyncTaskFoodItem extends AsyncTask<String, String, JSONObject> {
                 itemFood.setCount(r.getString("count"));
                 itemFood.setArchived(r.getString("archived"));
                 ViewFoodItems.ItemfoodList.add(itemFood);
-
             }
-
-
         }
         catch (JSONException e){
             e.printStackTrace();
@@ -79,5 +81,7 @@ public class AsyncTaskFoodItem extends AsyncTask<String, String, JSONObject> {
         }
 
     }
+
+
 
 }

@@ -15,10 +15,11 @@
         >
 
 
+
         <ListView
             android:layout_marginTop="20dp"
             android:id="@+id/list_cart"
-            android:layout_height="fill_parent"
+            android:layout_height="0dp"
             android:layout_width="match_parent"
             android:layout_weight="1.0"
             android:divider="@null"
@@ -65,13 +66,12 @@
             android:background="@color/colorPrimaryDark"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="CHECK OUT"
+            android:text="@string/check_out"
             android:textSize="25sp"
             android:textColor="#f5fffa"
             />
 
     </LinearLayout>
-
 
 
 </LinearLayout>

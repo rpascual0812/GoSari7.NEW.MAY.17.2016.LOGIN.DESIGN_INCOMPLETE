@@ -2,8 +2,14 @@ package com.android.iit.chrs.gosari;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -11,9 +17,13 @@ import android.graphics.drawable.TransitionDrawable;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Handler;
+import android.provider.Settings;
+import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.media.MediaBrowserCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -22,6 +32,18 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+import com.google.android.gms.auth.GooglePlayServicesAvailabilityException;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+import static android.app.Notification.*;
+import static android.app.PendingIntent.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,7 +55,11 @@ public class MainActivity extends AppCompatActivity {
 
     ConnectionDetector cd;
 
-    LinearLayout LinearLayout_main;
+    //LinearLayout LinearLayout_main;
+
+    private BroadcastReceiver broadcastReceiver;
+
+    RelativeLayout relativeLayout;
 
 
   //  TransitionDrawable transitionDrawable;
@@ -43,10 +69,9 @@ AnimationDrawable anim;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
+        relativeLayout = (RelativeLayout) findViewById(R.id.relativelayout);
         cd=new ConnectionDetector(getApplicationContext());
-        LinearLayout_main=(LinearLayout)findViewById(R.id.LinearLayout_main);
+        //LinearLayout_main=(LinearLayout)findViewById(R.id.LinearLayout_main);
         iv_buildings=(ImageView)findViewById(R.id.iv_buildings);
         iv_gosariIcons=(ImageView)findViewById(R.id.iv_gosariIcon);
         btnStart=(Button)findViewById(R.id.btnStart);
@@ -70,6 +95,53 @@ AnimationDrawable anim;
         });
         Slide_in();
 
+        broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_SUCCESS)){
+                    String token = intent.getStringExtra("token");
+                }else if (intent.getAction().equals(GCMRegistrationIntentService.REGITRATION_ERROR)){
+                    Toast.makeText(getApplicationContext(),"GCM registration error!",Toast.LENGTH_LONG).show();
+                }else {
+                    Toast.makeText(getApplicationContext(),"Error occured!",Toast.LENGTH_LONG).show();
+                }
+            }
+        };
+
+        //Checking play service is available or not
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
+        //if play service is not available
+        if (ConnectionResult.SUCCESS != resultCode){
+            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)){
+                Toast.makeText(getApplicationContext(),"Google Play Service is not installed/enabled in this device!",Toast.LENGTH_LONG).show();
+                GooglePlayServicesUtil.showErrorNotification(resultCode,getApplicationContext());
+            }else {
+                //If play service is not supported
+                //Displaying an error message
+                Toast.makeText(getApplicationContext(),"This device is not supported by Google Play Service!",Toast.LENGTH_LONG).show();
+            }
+        }else {
+            //If play service is available
+            //Starting intent to register device
+            Intent intent = new Intent(this,GCMRegistrationIntentService.class);
+            startService(intent);
+        }
+
+        Calendar c = Calendar.getInstance();
+        int hours = c.get(Calendar.HOUR_OF_DAY);
+        int minutes = c.get(Calendar.MINUTE);
+        int seconds = c.get(Calendar.SECOND);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM--dd HH:mm:ss");
+        if (hours >=6 && hours < 12){
+            relativeLayout.setBackgroundResource(R.drawable.new_background_hdpi);
+        }else if (hours >= 12 && hours < 17){
+            relativeLayout.setBackgroundResource(R.drawable.background_noon_hdpi);
+        }else if (hours >= 17 && hours <= 24){
+            relativeLayout.setBackgroundResource(R.drawable.background_night_hdpi);
+        }else {
+            relativeLayout.setBackgroundResource(R.drawable.background_night_hdpi);
+        }
+
 
     }
 
@@ -85,7 +157,7 @@ AnimationDrawable anim;
 
     public void Slide_in(){
 
-        slide_in=AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_in);
+        slide_in=AnimationUtils.loadAnimation(getApplicationContext(), R.anim.abc_slide_in_top);
         iv_buildings.startAnimation(slide_in);
 
         slide_in.setAnimationListener(new Animation.AnimationListener() {
@@ -112,7 +184,7 @@ AnimationDrawable anim;
 
     public void Pop_in(){
         btnStart.setVisibility(View.VISIBLE);
-        pop_in=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.pop);
+        pop_in=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.abc_popup_enter);
        btnStart.startAnimation(pop_in);
 
         btnStart.setBackgroundResource(R.drawable.change_background_btn);
@@ -154,15 +226,15 @@ AnimationDrawable anim;
 
 
     public void Pop_in2(){
-        pop_in2=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.pop);
+        pop_in2=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.abc_popup_exit);
         iv_gosariIcons.startAnimation(pop_in2);
 
     }
 
 
 
-  /*  public void Scale(){
-        scale=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.scale);
+    public void Scale(){
+        scale=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.abc_fade_in);
         iv_gosariIcons.startAnimation(scale);
         scale.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -184,7 +256,7 @@ AnimationDrawable anim;
     }
 
     public void Slide_out(){
-        slide_out=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_out);
+        slide_out=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.abc_slide_in_bottom);
         iv_buildings.startAnimation(slide_out);
         slide_out.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -204,7 +276,7 @@ AnimationDrawable anim;
 
             }
         });
-    }*/
+    }
 
 
     public void ShowAlertNoInternet(){
@@ -240,8 +312,26 @@ AnimationDrawable anim;
     }
 
 
-/*    public void changeBackground(){
+
+
+ /*   public void changeBackground(){
         LinearLayout_main.animate().translationY(0).translationYBy(120).setDuration(getResources().getInteger(android.R.integer.config_mediumAnimTime));
     }*/
+
+    //Registering receiver on resumed activity
+    @Override
+    protected void onResume(){
+        super.onResume();
+        Log.w("MainActivity","Resume");
+        LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver,new IntentFilter(GCMRegistrationIntentService.REGISTRATION_SUCCESS));
+        LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver,new IntentFilter(GCMRegistrationIntentService.REGITRATION_ERROR));
+    }
+
+    //Unregistering activity on pause
+    @Override
+    protected void onPause() {
+        super.onPause();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
+    }
 
 }
